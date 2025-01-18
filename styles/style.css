@@ -79,6 +79,11 @@ fieldset {
     background: var(--light-blue);
     margin: 0;
     border-block-end: none;
+    margin-block: 0;
+
+    .control-group {
+        display: inline-block;
+    }
 }
 
 .palette {
