@@ -95,7 +95,7 @@ fieldset {
 
     &>li {
         display: inline;
-        border: 6px inset var(--black);
+        border: 6px inset var(--gray);
 
         &>div {
             width: 64px;
