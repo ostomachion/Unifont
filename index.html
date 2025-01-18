@@ -10,135 +10,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Noto+Emoji:wght@300..700&family=Noto+Sans+Symbols:wght@100..900&display=swap" rel="stylesheet">
 
-    <style>
-        @font-face {
-            font-family: "Unifont Upper";
-            src: url('unifont-upper-16.0.02.otf') format('opentype');
-        }
+    <link rel="stylesheet" href="styles/style.css">
 
-        @font-face {
-            font-family: "Unifont";
-            src: url('unifont-16.0.02.otf') format('opentype');
-        }
-
-        :root {
-            --scale: 2;
-
-            --pink: #cc79a7;
-            --red: #d55e00;
-            --orange: #e69000;
-            --yellow: #f0e442;
-            --green: #009e73;
-            --light-blue: #56b4e9;
-            --blue: #0072b2;
-            --purple: #654d73;
-
-            --black: #000000;
-            --gray: #aeb3b8;
-            --white: #ffffff;
-
-            --skin1: #e4d0b5;
-            --skin2: #af9271;
-            --skin3: #8f6d45;
-            --skin4: #59302c;
-            --skin5: #332424;
-        }
-
-        * {
-            font-family: "Unifont", "Unifont Upper";
-            font-size: calc(16px / var(--dpr));
-            font-smooth: never;
-            -webkit-font-smoothing: none;
-            accent-color: var(--blue);
-        }
-
-        html {
-            background: var(--gray);
-        }
-        
-        body {
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            width: fit-content;
-        }
-
-        table, fieldset {
-            border: 6px ridge var(--blue);
-        }
-
-        fieldset {
-            background: var(--light-blue);
-            margin: 0;
-            border-block-end: none;
-        }
-
-        h1 {
-            font-size: 200%;
-            text-align: center;
-        }
-
-        table {
-            background: var(--white);
-            border-collapse: collapse;
-        }
-
-        th, td {
-            border: none;
-            text-align: center;
-        }
-
-        .number, .code, .name {
-            text-align: start;
-            padding-inline: 1em;
-        }
-
-        .unifont, .text, .noto-text {
-            border-inline-start: 2px ridge var(--gray);
-        }
-
-        td:is(.unifont, .text, .emoji, .color) img {
-            padding: 2px;
-            width: calc(16px * var(--scale) / var(--dpr));
-            image-rendering: pixelated;
-        }
-
-        td:is(.noto-text, .noto-emoji, .noto-color) {
-            /* line-height: 0; */
-            line-height: calc(24px * var(--scale));
-        }
-        
-        td.noto-text {
-            font-family: "Noto Sans Symbols", serif;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
-            font-size: calc(16px * var(--scale));
-        }
-
-        td.noto-emoji {
-            font-family: "Noto Emoji", serif;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
-            font-size: calc(12px * var(--scale));
-        }
-
-        td.noto-color {
-            font-family: "Noto Color Emoji", serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: calc(12px * var(--scale));
-        }
-
-        td.default img {
-            border: calc(2px * var(--scale)) solid #f0e442;
-        }
-    </style>
-
-    <script src="emoji-presentation.js" defer></script>
-    <script src="variations.js" defer></script>
-    <script src="script.js" defer></script>
+    <script src="scripts/emoji-presentation.js" defer></script>
+    <script src="scripts/variations.js" defer></script>
+    <script src="scripts/script.js" defer></script>
 </head>
 
 <body>
@@ -161,11 +37,17 @@
                 <th colspan="12" class="mediumhead">face-smiling</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
                 <th class="code">Code</th>
                 <th class="name">CLDR Short Name</th>
 
-                <th class="unifont">Unifont</th>
+                <th class="unifont">16.0.02</th>
 
                 <th class="text">Text</th>
                 <th class="emoji">Emoji</th>
@@ -249,9 +131,25 @@
                 <th colspan="12" class="mediumhead">face-affection</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">15</td>
@@ -302,9 +200,25 @@
                 <th colspan="12" class="mediumhead">face-tongue</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">24</td>
@@ -340,9 +254,25 @@
                 <th colspan="12" class="mediumhead">face-hand</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">30</td>
@@ -383,9 +313,25 @@
                 <th colspan="12" class="mediumhead">face-neutral-skeptical</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">37</td>
@@ -471,9 +417,25 @@
                 <th colspan="12" class="mediumhead">face-sleepy</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">53</td>
@@ -509,9 +471,25 @@
                 <th colspan="12" class="mediumhead">face-unwell</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">59</td>
@@ -577,9 +555,25 @@
                 <th colspan="12" class="mediumhead">face-hat</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">71</td>
@@ -600,9 +594,25 @@
                 <th colspan="12" class="mediumhead">face-glasses</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">74</td>
@@ -623,9 +633,25 @@
                 <th colspan="12" class="mediumhead">face-concerned</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">77</td>
@@ -728,9 +754,25 @@
                 <td class="name">confounded face</td>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">97</td>
@@ -766,9 +808,25 @@
                 <th colspan="12" class="mediumhead">face-negative</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">103</td>
@@ -814,9 +872,25 @@
                 <th colspan="12" class="mediumhead">face-costume</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">111</td>
@@ -862,9 +936,25 @@
                 <th colspan="12" class="mediumhead">cat-face</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">119</td>
@@ -915,9 +1005,25 @@
                 <th colspan="12" class="mediumhead">monkey-face</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">128</td>
@@ -938,9 +1044,25 @@
                 <th colspan="12" class="mediumhead">heart</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">131</td>
@@ -1043,9 +1165,25 @@
                 <td class="name">light blue heart</td>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">151</td>
@@ -1076,9 +1214,25 @@
                 <th colspan="12" class="mediumhead">emotion</th>
             </tr>
             <tr>
+                <th colspan="3"></th>
+                <th colspan="1">Unifont</th>
+                <th colspan="3">New</th>
+                <th colspan="3">Noto</th>
+            </tr>
+            <tr>
                 <th class="number">№</th>
-                <th class="number">Code</th>
-                <th>CLDR Short Name</th>
+                <th class="code">Code</th>
+                <th class="name">CLDR Short Name</th>
+
+                <th class="unifont">16.0.02</th>
+
+                <th class="text">Text</th>
+                <th class="emoji">Emoji</th>
+                <th class="color">Color</th>
+                
+                <th class="noto-text">Text</th>
+                <th class="noto-emoji">Emoji</th>
+                <th class="noto-color">Color</th>
             </tr>
             <tr>
                 <td class="number">156</td>
@@ -1150,6 +1304,8 @@
                 <td class="code">U+1F4A4</td>
                 <td class="name">ZZZ</td>
             </tr>
+
+<!--             
             <tr>
                 <th colspan="12" class="bighead">People &amp; Body</th>
             </tr>
@@ -10785,7 +10941,7 @@
                 <td class="number">1910</td>
                 <td class="code">U+1F3F4<br>U+E0067<br>U+E0062<br>U+E0077<br>U+E006C<br>U+E0073<br>U+E007F</td>
                 <td class="name">flag: Wales</td>
-            </tr>
+            </tr> -->
         </tbody>
     </table>
 </body>

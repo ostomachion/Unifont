@@ -34,8 +34,8 @@ async function populate() {
         unifontTd.classList.add('unifont');
 
         if (isSingleCodePoint) {
-            const unifontSrc = `${no} - ${name}/${fileName}.png`;
-            const fallbackSrc = `${fileName}.png`;
+            const unifontSrc = `glyphs/${no} - ${name}/${fileName}.png`;
+            const fallbackSrc = `TODO/${fileName}.png`;
             if (await isImageValid(unifontSrc)) {
                 const unifontImg = document.createElement('img');
                 unifontImg.setAttribute('src', unifontSrc);
@@ -61,13 +61,13 @@ async function populate() {
         }
 
         if (isVariation) {
-            let textSrc = `${no} - ${name}/${fileName}-rev.png`;
+            let textSrc = `glyphs/${no} - ${name}/${fileName}-rev.png`;
             if (!(await isImageValid(textSrc))) {
-                textSrc = 'TODO-text.png'
+                textSrc = 'TODO/TODO-text.png'
             }
 
             const textImg = document.createElement('img');
-            textImg.setAttribute('src', 'TODO-text.png');
+            textImg.setAttribute('src', 'TODO/TODO-text.png');
             textTd.appendChild(textImg);
         }
         
@@ -80,9 +80,9 @@ async function populate() {
             emojiTd.classList.add('default');
         }
 
-        let emojiSrc = `${no} - ${name}/${fileName}-emoji.png`;
+        let emojiSrc = `glyphs/${no} - ${name}/${fileName}-emoji.png`;
         if (!(await isImageValid(emojiSrc))) {
-            emojiSrc = 'TODO-emoji.png';
+            emojiSrc = 'TODO/TODO-emoji.png';
         }
 
         const emojiImg = document.createElement('img');
@@ -95,9 +95,9 @@ async function populate() {
         const colorTd = document.createElement('td');
         colorTd.classList.add('color');
 
-        let colorSrc = `${no} - ${name}/${fileName}-color.png`;
+        let colorSrc = `glyphs/${no} - ${name}/${fileName}-color.png`;
         if (!(await isImageValid(colorSrc))) {
-            colorSrc = 'TODO-color.png';
+            colorSrc = 'TODO/TODO-color.png';
         }
 
         const colorImg = document.createElement('img');
@@ -140,5 +140,6 @@ function isImageValid(url) {
         img.onerror = () => resolve(false); // Failed to load the image
 
         img.src = url; // Start loading the image
+        console.log(img.src);
     });
 }
