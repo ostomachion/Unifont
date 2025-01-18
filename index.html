@@ -34,6 +34,8 @@
         <li>colored versions of each emoji style glyph</li>
     </ul>
 
+    <h3>Color Palette</h3>
+
     <ul class="palette">
         <li><div class="red"></div></li>
         <li><div class="pink"></div></li>
@@ -61,8 +63,10 @@
     <ul>
         <li>
             <strong>Be simple</strong> enough to fit with the look, feel, and philosophy of Unifont. Human16 uses only
-            16 colors, with no two colors being too similar. An efficient glyph encoding can be derived analogous to the
-            .hex format used for existing Unifont glyphs, using four bits per pixel instead of one.
+            16 colors (not counting transparency), with no two colors being too similar. An efficient glyph encoding can
+            be derived analogous to the .hex format used for existing Unifont glyphs, using four bits per pixel instead
+            of one. Either a simple transparency mask can be used, or a simple algorithm can determine the transparent
+            pixels can be automatically determined as none of the outermost pixels of the glyph will ever be pure white.
         </li>
         <li>
             <strong>Be compatible</strong> with all existing emoji characters and their expected presentations. Human16
@@ -86,6 +90,53 @@
             palette.
         </li>
     </ul>
+
+    <h3>Glyphs</h3>
+
+    <p>
+        The following lists the new glyph designs. The <b>Unifont</b> column shows the current glyph in Unifont 16.0.02.
+        The <b>New</b> columns show the new glyph designs in text style, monochrome emoji style, and color emoji style.
+        Only characters with emoji variation sequences have text style variants.  Note that sequences never have text
+        style presentations (ignoring the special case keycap sequences).
+    </p>
+
+    <p>
+        If the character has a default emoji presentation, the <b>emoji</b> column will be outlined in yellow;
+        otherwise, the <b>text</b> column will be outlined. If Unifont adopts these new designs, they will have to
+        decide which variants to use. Listed below are a few possibilities:
+    </p>
+
+    <ul>
+        <li>
+            Use the default style (outlined in yellow). This aligns with many of the glyph designs in Unifont 16.0.02.
+            This may align the most with user expectations in most cases, although a few edge cases may cause confusion.
+        </li>
+        <li>
+            Always use the text style when one exists. This may be a good choice considering that Unifont does not
+            have any &ldquo;support&rdquo; for Emoji other than providing monochrome glyphs for the base characters.
+        </li>
+        <li>
+            Always use the emoji style. This brings consistency to all emoji glyphs, although the text style may be
+            preferred or expected in some cases.
+        </li>
+        <li>
+            Incorporate both styles by adding support for Emoji variation sequences to Unifont. This gives users and
+            systems control over the glyphs at the expense of the simplicity of Unifont.
+        </li>
+        <li>
+            Create separate fonts for text style vs emoji style. There is precedence for this approach with the
+            Japanese versions of the CJK glyphs in planes 0 and 1. A similar approach could be used for Emoji at the
+            expense of multiplying the number of charts and fonts. It would also have to be decided whether the text
+            style version of the font would include Emoji code points which do not have text styles.
+        </li>
+    </ul>
+
+    <p>
+        Regardless of if and how Unifont uses these glyphs, I intend to make two new fonts to compliment Unifont. One
+        will use the monochrome emoji style glyphs and the other will use the color emoji style glyphs. Both will
+        include full emoji support for sequences and variations. These fonts will only contain Emoji characters. Unifont
+        is free to use, redistribute, or even take over these fonts when they become available.
+    </p>
 
     <fieldset>
         <legend>Scale</legend>

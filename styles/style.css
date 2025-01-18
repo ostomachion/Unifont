@@ -51,6 +51,26 @@ body {
     width: min-content;
 }
 
+h1 {
+    font-size: 200%;
+    color: var(--blue);
+    background: var(--white);
+    border-block: 4px ridge var(--blue);
+    padding-block: 8px;
+}
+
+h2 {
+    font-size: 200%;
+    color: var(--blue);
+    border-block-end: 4px ridge var(--blue);
+}
+
+h3 {
+    color: var(--blue);
+    border-block-end: 2px solid var(--blue);
+
+}
+
 table, fieldset {
     border: 6px ridge var(--blue);
 }
@@ -59,11 +79,6 @@ fieldset {
     background: var(--light-blue);
     margin: 0;
     border-block-end: none;
-}
-
-h1 {
-    font-size: 200%;
-    text-align: center;
 }
 
 .palette {
