@@ -1,4 +1,6 @@
 
+
+document.documentElement.style.setProperty('--dpri', window.devicePixelRatio | 1);
 document.documentElement.style.setProperty('--dpr', window.devicePixelRatio);
 
 document.querySelectorAll('input[name="scale"]').forEach(radio => {

@@ -34,7 +34,7 @@
 
 * {
     font-family: "Unifont", "Unifont Upper";
-    font-size: calc(16px / var(--dpr));
+    font-size: calc(16px / var(--dpr) * var(--dpri));
     font-smooth: never;
     -webkit-font-smoothing: none;
     accent-color: var(--blue);
@@ -142,7 +142,7 @@ th, td {
 
 td:is(.unifont, .text, .emoji, .color) img {
     padding: 2px;
-    width: calc(16px * var(--scale) / var(--dpr));
+    width: calc(16px * var(--scale) / var(--dpr) * var(--dpri));
     image-rendering: pixelated;
 }
 
