@@ -36,17 +36,8 @@ async function populate() {
         if (isSingleCodePoint) {
             const unifontSrc = `glyphs/${no} - ${name}/${fileName}.png`;
             const fallbackSrc = `TODO/${fileName}.png`;
-            if (await isImageValid(unifontSrc)) {
-                const unifontImg = document.createElement('img');
-                unifontImg.setAttribute('src', unifontSrc);
-                unifontTd.appendChild(unifontImg);
-            } else if (await isImageValid(fallbackSrc)) {
-                const unifontImg = document.createElement('img');
-                unifontImg.setAttribute('src', fallbackSrc);
-                unifontTd.appendChild(unifontImg);
-            } else {
-                unifontTd.textContent = '???';
-            }
+            const img = await getValidImage(unifontSrc, fallbackSrc);
+            unifontTd.appendChild(img);
         } else {
             unifontTd.textContent = 'N/A';
         }
@@ -61,13 +52,8 @@ async function populate() {
         }
 
         if (isVariation) {
-            let textSrc = `glyphs/${no} - ${name}/${fileName}-rev.png`;
-            if (!(await isImageValid(textSrc))) {
-                textSrc = 'TODO/TODO-text.png'
-            }
-
-            const textImg = document.createElement('img');
-            textImg.setAttribute('src', 'TODO/TODO-text.png');
+            const textSrc = `glyphs/${no} - ${name}/${fileName}-text.png`;
+            const textImg = await getValidImage(textSrc, 'TODO/TODO-text.png');
             textTd.appendChild(textImg);
         }
         
@@ -80,13 +66,8 @@ async function populate() {
             emojiTd.classList.add('default');
         }
 
-        let emojiSrc = `glyphs/${no} - ${name}/${fileName}-emoji.png`;
-        if (!(await isImageValid(emojiSrc))) {
-            emojiSrc = 'TODO/TODO-emoji.png';
-        }
-
-        const emojiImg = document.createElement('img');
-        emojiImg.setAttribute('src', emojiSrc);
+        const emojiSrc = `glyphs/${no} - ${name}/${fileName}-emoji.png`;
+        const emojiImg = await getValidImage(emojiSrc, 'TODO/TODO-emoji.png');
         emojiTd.appendChild(emojiImg);
 
         row.appendChild(emojiTd);
@@ -95,13 +76,8 @@ async function populate() {
         const colorTd = document.createElement('td');
         colorTd.classList.add('color');
 
-        let colorSrc = `glyphs/${no} - ${name}/${fileName}-color.png`;
-        if (!(await isImageValid(colorSrc))) {
-            colorSrc = 'TODO/TODO-color.png';
-        }
-
-        const colorImg = document.createElement('img');
-        colorImg.setAttribute('src', colorSrc);
+        const colorSrc = `glyphs/${no} - ${name}/${fileName}-color.png`;
+        const colorImg = await getValidImage(colorSrc, 'TODO/TODO-color.png');
         colorTd.appendChild(colorImg);
         
         row.appendChild(colorTd);
@@ -132,14 +108,28 @@ async function populate() {
     }
 }
 
-function isImageValid(url) {
+async function getValidImage(...urls) {
+    for (let i = 0; i < urls.length - 1; i++) {
+        const img = await validateImage(urls[i]);
+        if (img) {
+            return img;
+        }
+    }
+
+    // Return the fallback image (last argument) without testing
+    const fallbackUrl = urls[urls.length - 1];
+    const fallbackImg = new Image();
+    fallbackImg.src = fallbackUrl;
+    return fallbackImg;
+}
+
+function validateImage(url) {
     return new Promise((resolve) => {
         const img = new Image();
 
-        img.onload = () => resolve(true);  // Image loaded successfully
-        img.onerror = () => resolve(false); // Failed to load the image
+        img.onload = () => resolve(img);  // Image loaded successfully
+        img.onerror = () => resolve(undefined); // Failed to load the image
 
         img.src = url; // Start loading the image
-        console.log(img.src);
     });
 }
