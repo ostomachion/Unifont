@@ -94,9 +94,7 @@ async function populate() {
         // Noto Emoji
         const notoEmojiTd = document.createElement('td');
         notoEmojiTd.classList.add('noto-emoji');
-        if (isSingleCodePoint) {
-            notoEmojiTd.textContent = String.fromCodePoint(code[0]) + '\uFE0E';
-        }
+        notoEmojiTd.textContent = code.map(c => String.fromCodePoint(c)).join('');
 
         row.append(notoEmojiTd);
 
