@@ -12,8 +12,8 @@
 :root {
     --scale: 2;
 
-    --pink: #cc79a7;
     --red: #d55e00;
+    --pink: #cc79a7;
     --orange: #e69000;
     --yellow: #f0e442;
     --green: #009e73;
@@ -25,11 +25,11 @@
     --gray: #aeb3b8;
     --white: #ffffff;
 
-    --skin1: #e4d0b5;
-    --skin2: #af9271;
-    --skin3: #8f6d45;
-    --skin4: #59302c;
-    --skin5: #332424;
+    --skin1: #e8d9ca;
+    --skin2: #ccc199;
+    --skin3: #ab8859;
+    --skin4: #5f3f35;
+    --skin5: #3f352c;
 }
 
 * {
@@ -48,7 +48,7 @@ body {
     margin: auto;
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    width: min-content;
 }
 
 table, fieldset {
@@ -64,6 +64,41 @@ fieldset {
 h1 {
     font-size: 200%;
     text-align: center;
+}
+
+.palette {
+    display: grid;
+    grid-template-columns: repeat(8, min-content);
+    margin-inline: auto;
+    margin-block: 32px;
+    padding: 0;
+
+    &>li {
+        display: inline;
+        border: 6px inset var(--black);
+
+        &>div {
+            width: 64px;
+            height: 64px;
+
+            &.red { background-color: var(--red); }
+            &.pink { background-color: var(--pink); }
+            &.orange { background-color: var(--orange); }
+            &.yellow { background-color: var(--yellow); }
+            &.green { background-color: var(--green); }
+            &.light-blue { background-color: var(--light-blue); }
+            &.blue { background-color: var(--blue); }
+            &.purple { background-color: var(--purple); }
+            &.black { background-color: var(--black); }
+            &.gray { background-color: var(--gray); }
+            &.white { background-color: var(--white); }
+            &.skin1 { background-color: var(--skin1); }
+            &.skin2 { background-color: var(--skin2); }
+            &.skin3 { background-color: var(--skin3); }
+            &.skin4 { background-color: var(--skin4); }
+            &.skin5 { background-color: var(--skin5); }
+        }
+    }
 }
 
 table {

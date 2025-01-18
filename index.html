@@ -20,6 +20,72 @@
 <body>
     <h1>Unifont Glyph Modifications and Extensions</h1>
 
+    <h2>Emoji Consolidation and Coloring</h2>
+
+    <p>
+        These edits aim to make the Unifont emoji glyphs both internally consistent and reasonably consistent with the
+        familiar designs provided by other fonts and vendors. This work also extends Unifont Emoji glyphs by including:
+    </p>
+
+    <ul>
+        <li>the basic Emoji sequences: keycap, flag, tag, and RGI modifiers</li>
+        <li>the Emoji RGI ZWJ sequences: family, role, gender, hair, and other</li>
+        <li>the Emoji variation sequences: text style and Emoji style</li>
+        <li>colored versions of each emoji style glyph</li>
+    </ul>
+
+    <p>
+        The color palette used for the color glyphs, called &ldquo;Human16&rdquo;, was carefully designed with the
+        following goals:
+    </p>
+
+    <ul>
+        <li>
+            <strong>Be simple</strong> enough to fit with the look, feel, and philosophy of Unifont. Human16 uses only
+            16 colors, with no two colors being too similar.
+        </li>
+        <li>
+            <strong>Be compatible</strong> with all existing emoji characters and their expected presentations. Human16
+            includes the 12 colors of the explicitly colored shape Emoji (hearts, squares, and circle), as well as the
+            five skin tones from the set of skin tone modifier emoji (one of which overlaps with the basic
+            &ldquo;brown&rdquo; color).
+        </li>
+        <li>
+            <strong>Be accessible.</strong> Human16 incorporates the <a href="https://x.com/bangwong/status/492662880760655873">colorblind
+            safe palette</a> used by Bang Wong (<cite><a href="https://jfly.uni-koeln.de/html/manuals/pdf/color_blind.pdf">original
+            source</a></cite>; see also <cite><a href="https://doi.org/10.1038/nmeth.1618">Wong, B. Points of view:
+            Color blindness. <i>Nat Methods</i> <b>8</b>, 441 (2011)</a></cite> for more details). This palette is
+            expanded by adding a carefully selected shade of purple and gray.
+        </li>
+        <li>
+            <strong>Be inclusive.</strong> Rather than the Fitzpatrick scale, Human16 derives its skin tone colors from
+            <cite><a href="https://skintone.google/the-scale">Monk, Ellis. &ldquo;Monk Skin Tone Scale,&rdquo; 2019</a></cite>.
+            This scale is more modern, inclusive, and representative than the Fitzpatrick scale which is primary a
+            dermatological tool and has been criticized for its Eurocentric bias and insufficient representation of
+            global skin color diversity. The specific tones have been modified to better match the the rest of the
+            palette.
+        </li>
+    </ul>
+
+    <ul class="palette">
+        <li><div class="red"></div></li>
+        <li><div class="pink"></div></li>
+        <li><div class="orange"></div></li>
+        <li><div class="yellow"></div></li>
+        <li><div class="green"></div></li>
+        <li><div class="light-blue"></div></li>
+        <li><div class="blue"></div></li>
+        <li><div class="purple"></div></li>
+        <li><div class="black"></div></li>
+        <li><div class="gray"></div></li>
+        <li><div class="white"></div></li>
+        <li><div class="skin1"></div></li>
+        <li><div class="skin2"></div></li>
+        <li><div class="skin3"></div></li>
+        <li><div class="skin4"></div></li>
+        <li><div class="skin5"></div></li>
+    </ul>
+
     <fieldset>
         <legend>Scale</legend>
         
