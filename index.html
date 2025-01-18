@@ -24,13 +24,13 @@
 
     <p>
         These edits aim to make the Unifont emoji glyphs both internally consistent and reasonably consistent with the
-        familiar designs provided by other fonts and vendors. This work also extends Unifont Emoji glyphs by including:
+        familiar designs provided by other fonts and vendors. This work also extends Unifont emoji glyphs by including:
     </p>
 
     <ul>
-        <li>the basic Emoji sequences: keycap, flag, tag, and RGI modifiers</li>
-        <li>the Emoji RGI ZWJ sequences: family, role, gender, hair, and other</li>
-        <li>the Emoji variation sequences: text style and Emoji style</li>
+        <li>glyphs for the basic emoji sequences: keycap, flag, tag, and RGI modifiers</li>
+        <li>glyphs for the emoji RGI ZWJ sequences: family, role, gender, hair, and other</li>
+        <li>glyphs for the emoji variation sequences: text style and emoji style</li>
         <li>colored versions of each emoji style glyph</li>
     </ul>
 
@@ -70,7 +70,7 @@
         </li>
         <li>
             <strong>Be compatible</strong> with all existing emoji characters and their expected presentations. Human16
-            includes the 12 colors of the explicitly colored shape Emoji (hearts, squares, and circle), as well as the
+            includes the 12 colors of the explicitly colored shape emoji (hearts, squares, and circle), as well as the
             five skin tones from the set of skin tone modifier emoji (one of which overlaps with the basic
             &ldquo;brown&rdquo; color).
         </li>
@@ -113,28 +113,28 @@
         </li>
         <li>
             Always use the text style when one exists. This may be a good choice considering that Unifont does not
-            have any &ldquo;support&rdquo; for Emoji other than providing monochrome glyphs for the base characters.
+            have any &ldquo;support&rdquo; for emoji other than providing monochrome glyphs for the base characters.
         </li>
         <li>
             Always use the emoji style. This brings consistency to all emoji glyphs, although the text style may be
             preferred or expected in some cases.
         </li>
         <li>
-            Incorporate both styles by adding support for Emoji variation sequences to Unifont. This gives users and
+            Incorporate both styles by adding support for emoji variation sequences to Unifont. This gives users and
             systems control over the glyphs at the expense of the simplicity of Unifont.
         </li>
         <li>
             Create separate fonts for text style vs emoji style. There is precedence for this approach with the
-            Japanese versions of the CJK glyphs in planes 0 and 1. A similar approach could be used for Emoji at the
+            Japanese versions of the CJK glyphs in planes 0 and 1. A similar approach could be used for emoji at the
             expense of multiplying the number of charts and fonts. It would also have to be decided whether the text
-            style version of the font would include Emoji code points which do not have text styles.
+            style version of the font would include emoji code points which do not have text styles.
         </li>
     </ul>
 
     <p>
         Regardless of if and how Unifont uses these glyphs, I intend to make two new fonts to compliment Unifont. One
         will use the monochrome emoji style glyphs and the other will use the color emoji style glyphs. Both will
-        include full emoji support for sequences and variations. These fonts will only contain Emoji characters. Unifont
+        include full emoji support for sequences and variations. These fonts will only contain emoji characters. Unifont
         is free to use, redistribute, or even take over these fonts when they become available.
     </p>
 
