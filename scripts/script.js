@@ -49,7 +49,7 @@ async function populateGlyphs() {
     tbody.textContent = '';
 
     for (const emoji of emojiList) {
-        const fileName = emoji.codePoints[0].toString(16).padStart(6, '0');
+        const fileName = emoji.codePoints[0].toString(16).padStart(6, '0').toUpperCase();
 
         const tr = document.createElement('tr');
 
