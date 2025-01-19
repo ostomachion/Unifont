@@ -86,7 +86,7 @@ async function populateGlyphs() {
             data.unifontImg = document.createElement('img');
             data.unifontImg.src = loadingSrc;
             if (isTextStyleDefault) {
-                unifontImg.classList.add('text-style-default');
+                data.unifontImg.classList.add('text-style-default');
             }
             unifontTd.appendChild(data.unifontImg);
         } else {
