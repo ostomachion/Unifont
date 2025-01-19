@@ -126,9 +126,14 @@ table {
     border-collapse: collapse;
 }
 
+tbody tr {
+    border-top: 1px solid var(--light-blue);
+}
+
 th, td {
     border: none;
     text-align: center;
+    padding-inline: 8px;
 }
 
 .number, .code, .name {

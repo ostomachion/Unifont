@@ -30,9 +30,7 @@
 
     <link rel="stylesheet" href="styles/style.css">
 
-    <script src="scripts/emoji-order.js" defer></script>
-    <script src="scripts/emoji-presentation.js" defer></script>
-    <script src="scripts/variations.js" defer></script>
+    <script src="scripts/emoji-data.js" defer></script>
     <script src="scripts/script.js" defer></script>
 </head>
 
@@ -164,7 +162,7 @@
         <legend>Glyphs</legend>
 
         <span class="control-group">
-            <label>Category <em>(not yet implemented)</em></label>
+            <label>Category</label>
             <br>
             <select name="smileys-and-emotion" id="category"></select>
         </span>
@@ -178,16 +176,15 @@
         </span>
     </fieldset>
     
-    <table>
+    <table id="glyphs">
         <thead>
             <tr>
-                <th colspan="3"></th>
+                <th colspan="2">Unicode</th>
                 <th colspan="1">Unifont</th>
                 <th colspan="3">New</th>
                 <th colspan="3">Noto</th>
             </tr>
             <tr>
-                <th class="number">№</th>
                 <th class="code">Code</th>
                 <th class="name">CLDR Short Name</th>
 
@@ -202,78 +199,7 @@
                 <th class="noto-color">Color</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td class="number">1</td>
-                <td class="code">U+1F600</td>
-                <td class="name">grinning face</td>
-            </tr>
-            <tr>
-                <td class="number">2</td>
-                <td class="code">U+1F603</td>
-                <td class="name">grinning face with big eyes</td>
-            </tr>
-            <tr>
-                <td class="number">3</td>
-                <td class="code">U+1F604</td>
-                <td class="name">grinning face with smiling eyes</td>
-            </tr>
-            <tr>
-                <td class="number">4</td>
-                <td class="code">U+1F601</td>
-                <td class="name">beaming face with smiling eyes</td>
-            </tr>
-            <tr>
-                <td class="number">5</td>
-                <td class="code">U+1F606</td>
-                <td class="name">grinning squinting face</td>
-            </tr>
-            <tr>
-                <td class="number">6</td>
-                <td class="code">U+1F605</td>
-                <td class="name">grinning face with sweat</td>
-            </tr>
-            <tr>
-                <td class="number">7</td>
-                <td class="code">U+1F923</td>
-                <td class="name">rolling on the floor laughing</td>
-            </tr>
-            <tr>
-                <td class="number">8</td>
-                <td class="code">U+1F602</td>
-                <td class="name">face with tears of joy</td>
-            </tr>
-            <tr>
-                <td class="number">9</td>
-                <td class="code">U+1F642</td>
-                <td class="name">slightly smiling face</td>
-            </tr>
-            <tr>
-                <td class="number">10</td>
-                <td class="code">U+1F643</td>
-                <td class="name">upside-down face</td>
-            </tr>
-            <tr>
-                <td class="number">11</td>
-                <td class="code">U+1FAE0</td>
-                <td class="name">melting face</td>
-            </tr>
-            <tr>
-                <td class="number">12</td>
-                <td class="code">U+1F609</td>
-                <td class="name">winking face</td>
-            </tr>
-            <tr>
-                <td class="number">13</td>
-                <td class="code">U+1F60A</td>
-                <td class="name">smiling face with smiling eyes</td>
-            </tr>
-            <tr>
-                <td class="number">14</td>
-                <td class="code">U+1F607</td>
-                <td class="name">smiling face with halo</td>
-            </tr>
-        </tbody>
+        <tbody></tbody>
     </table>
 </body>
 

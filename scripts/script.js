@@ -10,66 +10,89 @@ document.querySelectorAll('input[name="scale"]').forEach(radio => {
     });
 });
 
-populateCategories();
+populateGroups();
 populateGlyphs();
 
-function populateCategories() {
+function populateGroups() {
     const select = document.getElementById('category');
+    select.onchange = populateGlyphs;
     let first = true;
-    for (let category of window.emojiOrder) {
+    for (let group of window.emojiData) {
         if (!first) {
-            select.append(document.createElement('hr'));
+            select.appendChild(document.createElement('hr'));
         }
 
         const optgroup = document.createElement('optgroup');
-        optgroup.label = category['label'];
-        for (let subCategory of category.order) {
+        optgroup.label = group.label;
+        for (let subgroup of group.subgroups) {
             const option = document.createElement('option');
-            option.value = `${category.label} : ${subCategory.label}`;
-            option.textContent = subCategory.label;
-            optgroup.append(option);
+            option.value = `${group.label}:${subgroup.label}`;
+            option.textContent = subgroup.label;
+            optgroup.appendChild(option);
         }
 
-        select.append(optgroup);
+        select.appendChild(optgroup);
         first = false;
     }
 }
 
 async function populateGlyphs() {
-    const rows = document.querySelectorAll('table tr:has(td)');
-    for (const row of rows) {
-        const no = row.children[0].textContent.trim();
+    const selectedGroup = document.getElementById('category').value.split(':', 2);
 
-        const code = row.children[1].textContent.match(/\s*U\+([0-9A-F]+)\s*/gi)
-            .map(code => parseInt(code.slice(2), 16));
+    let emojiList = window.emojiData
+        .find(g => g.label === selectedGroup[0])
+        .subgroups
+        .find(s => s.label === selectedGroup[1])
+        .emoji;
 
-        const fileName = code
-            .map(n => n.toString(16).toUpperCase().padStart(6, '0'))
-            .join('');
-        
-        const isSingleCodePoint = code.length === 1;
+    const tbody = document.getElementById('glyphs').getElementsByTagName('tbody')[0];
+    tbody.textContent = '';
 
-        const name = row.children[2].textContent.trim();
+    for (const emoji of emojiList) {
+        const fileName = emoji.codePoints[0].toString(16).padStart(6, '0');
 
-        const isVariation = isSingleCodePoint && window.variationCodePoints.includes(code[0]);
-        const isEmojiPresentation = !isSingleCodePoint || window.emojiPresentationCodePoints.includes(code[0]);
+        const tr = document.createElement('tr');
 
-        // Unifont
+        // Code Point
+        const codeTd = document.createElement('td');
+        codeTd.className = 'code';
+        for (const codePoint of emoji.codePoints) {
+            const codePointDiv = document.createElement('div');
+            codePointDiv.className = 'code-point';
+            codePointDiv.textContent = 'U+' + codePoint.toString(16).toUpperCase();
+            codeTd.appendChild(codePointDiv);
+        }
+
+        tr.appendChild(codeTd);
+
+        // CLDR Short Name
+        const nameTd = document.createElement('td');
+        nameTd.className = 'name';
+        nameTd.textContent = emoji.name;
+        tr.appendChild(nameTd);
+
+
+        // Unifont Glyph
         const unifontTd = document.createElement('td');
         unifontTd.classList.add('unifont');
 
-        if (isSingleCodePoint) {
-            const unifontSrc = `glyphs/${no} - ${name}/${fileName}.png`;
-            const fallbackSrc = `TODO/${fileName}.png`;
+        if (emoji.codePoints.length === 1) {
+            const unifontSrc = `glyphs/${emoji.name}/${fileName}.png`;
+            const fallbackSrc = `glyphs/TODO/${fileName}.png`;
             const img = await getValidImage(unifontSrc, fallbackSrc);
             unifontTd.appendChild(img);
         } else {
             unifontTd.textContent = 'N/A';
         }
 
-        row.appendChild(unifontTd);
-
+        tr.appendChild(unifontTd);
+        
         // Text
+
+        // TODO:
+        const isEmojiPresentation = false;
+        const isVariation = false;
+
         const textTd = document.createElement('td');
         textTd.classList.add('text');
         if (!isEmojiPresentation) {
@@ -77,13 +100,13 @@ async function populateGlyphs() {
         }
 
         if (isVariation) {
-            const textSrc = `glyphs/${no} - ${name}/${fileName}-text.png`;
-            const textImg = await getValidImage(textSrc, 'TODO/TODO-text.png');
+            const textSrc = `glyphs/${emoji.name}/${fileName}-text.png`;
+            const textImg = await getValidImage(textSrc, 'glyphs/TODO/TODO-text.png');
             textTd.appendChild(textImg);
         } 
         
-        row.appendChild(textTd);
-
+        tr.appendChild(textTd);
+        
         // Emoji
         const emojiTd = document.createElement('td');
         emojiTd.classList.add('emoji');
@@ -91,43 +114,23 @@ async function populateGlyphs() {
             emojiTd.classList.add('default');
         }
 
-        const emojiSrc = `glyphs/${no} - ${name}/${fileName}-emoji.png`;
-        const emojiImg = await getValidImage(emojiSrc, 'TODO/TODO-emoji.png');
+        const emojiSrc = `glyphs/${emoji.name}/${fileName}-emoji.png`;
+        const emojiImg = await getValidImage(emojiSrc, 'glyphs/TODO/TODO-emoji.png');
         emojiTd.appendChild(emojiImg);
 
-        row.appendChild(emojiTd);
+        tr.appendChild(emojiTd);
 
         // Color
         const colorTd = document.createElement('td');
         colorTd.classList.add('color');
 
-        const colorSrc = `glyphs/${no} - ${name}/${fileName}-color.png`;
-        const colorImg = await getValidImage(colorSrc, 'TODO/TODO-color.png');
+        const colorSrc = `glyphs/${emoji.name}/${fileName}-color.png`;
+        const colorImg = await getValidImage(colorSrc, 'glyphs/TODO/TODO-color.png');
         colorTd.appendChild(colorImg);
         
-        row.appendChild(colorTd);
-
-        // Noto Text
-        const notoTextTd = document.createElement('td');
-        notoTextTd.classList.add('noto-text');
-        if (isVariation && isSingleCodePoint) {
-            notoTextTd.textContent = String.fromCodePoint(code[0]) + '\uFE0E';
-        }
-
-        row.append(notoTextTd);
-
-        // Noto Emoji
-        const notoEmojiTd = document.createElement('td');
-        notoEmojiTd.classList.add('noto-emoji');
-        notoEmojiTd.textContent = code.map(c => String.fromCodePoint(c)).join('');
-
-        row.append(notoEmojiTd);
-
-        // Noto Color
-        const notoColorTd = document.createElement('td');
-        notoColorTd.classList.add('noto-color');
-        notoColorTd.textContent = code.map(c => String.fromCodePoint(c)).join('');
-        row.append(notoColorTd);
+        tr.appendChild(colorTd);
+        
+        tbody.appendChild(tr);
     }
 }
 
