@@ -49,8 +49,6 @@ body {
     margin: auto;
     padding: 16px;
     border-inline: 8px ridge var(--gray);
-    display: flex;
-    flex-direction: column;
     width: min-content;
     background: var(--gray);
 }
@@ -129,6 +127,12 @@ fieldset {
 table {
     background: var(--white);
     border-collapse: collapse;
+}
+
+#glyphs {
+    min-height: calc(100dvh - 16px);
+    display: flex;
+    flex-direction: column;
 }
 
 tbody tr {
