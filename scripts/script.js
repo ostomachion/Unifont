@@ -50,18 +50,19 @@ async function populateGlyphs() {
 
     const loadingSrc = 'glyphs/loading.gif';
 
+    const domData = {};
+
+    // Start with placeholders for most things just to get the structure and layout built as quickly as possible.
     for (const emoji of emojiList) {
-        const fileName = emoji.codePoints[0].toString(16).padStart(6, '0').toUpperCase();
+        const data = {};
 
         const tr = document.createElement('tr');
 
-        // Start with placeholders for most things just to get the structure and layout built as quickly as possible.
-
         // Code Point
-        const codeTd = document.createElement('td');
-        codeTd.className = 'code';
-        codeTd.textContent = 'U+XXXX';
-        tr.appendChild(codeTd);
+        data.codeTd = document.createElement('td');
+        data.codeTd.className = 'code';
+        data.codeTd.textContent = 'U+XXXX';
+        tr.appendChild(data.codeTd);
 
         // CLDR Short Name
         const nameTd = document.createElement('td');
@@ -75,11 +76,10 @@ async function populateGlyphs() {
 
         // TODO: Actually look this up.
         const isTextStyleDefault = emoji.codePoints.length === 2 && emoji.codePoints[1] === 0xFE0F;
-        let unifontImgLoading = undefined;
         if (emoji.codePoints.length === 1 || isTextStyleDefault) {
-            unifontImgLoading = document.createElement('img');
-            unifontImgLoading.src = loadingSrc;
-            unifontTd.appendChild(unifontImgLoading);
+            data.unifontImg = document.createElement('img');
+            data.unifontImg.src = loadingSrc;
+            unifontTd.appendChild(data.unifontImg);
         } else {
             unifontTd.textContent = 'N/A';
         }
@@ -91,11 +91,10 @@ async function populateGlyphs() {
         const isVariation = false;
         const textTd = document.createElement('td');
         textTd.classList.add('text');
-        let textImgLoading = undefined;
         if (isVariation) {
-            textImgLoading = document.createElement('img');
-            textImgLoading.src = loadingSrc;
-            textTd.appendChild(textImgLoading);
+            data.textImg = document.createElement('img');
+            data.textImg.src = loadingSrc;
+            textTd.appendChild(textImg);
         } 
         
         tr.appendChild(textTd);
@@ -103,21 +102,28 @@ async function populateGlyphs() {
         // New monochrome emoji style glyph
         const emojiTd = document.createElement('td');
         emojiTd.classList.add('emoji');
-        const emojiImgLoading = document.createElement('img');
-        emojiImgLoading.src = loadingSrc;
-        emojiTd.appendChild(emojiImgLoading);
+        data.emojiImg = document.createElement('img');
+        data.emojiImg.src = loadingSrc;
+        emojiTd.appendChild(data.emojiImg);
         tr.appendChild(emojiTd);
 
         // New color emoji style glyph
         const colorTd = document.createElement('td');
         colorTd.classList.add('color');
-        const colorImgLoading = document.createElement('img');
-        colorImgLoading.src = loadingSrc;
-        colorTd.appendChild(colorImgLoading);
+        data.colorImg = document.createElement('img');
+        data.colorImg.src = loadingSrc;
+        colorTd.appendChild(data.colorImg);
         tr.appendChild(colorTd);
         
         tbody.appendChild(tr);
 
+        domData[emoji.name] = data;
+    }
+    
+    for (const emoji of emojiList) {
+        const data = domData[emoji.name];
+
+        const fileName = emoji.codePoints[0].toString(16).padStart(6, '0').toUpperCase();
 
         // Now take the time to fill in the data.
 
@@ -126,11 +132,13 @@ async function populateGlyphs() {
             const codePointDiv = document.createElement('div');
             codePointDiv.className = 'code-point';
             codePointDiv.textContent = 'U+' + codePoint.toString(16).toUpperCase();
-            codeTd.appendChild(codePointDiv);
+            data.codeTd.appendChild(codePointDiv);
         }
 
         // Unifont Glyph
-        if (typeof unifontImgLoading !== 'undefined') {
+        if (typeof data.unifontImg !== 'undefined') {
+            // TODO: Actually look this up.
+            const isTextStyleDefault = emoji.codePoints.length === 2 && emoji.codePoints[1] === 0xFE0F;
             const unifontSrc = `glyphs/${emoji.name}/${fileName}.png`;
             const fallbackSrc = `glyphs/TODO/${fileName}.png`;
             const unifontImg = await getValidImage(unifontSrc, fallbackSrc);
@@ -138,25 +146,25 @@ async function populateGlyphs() {
                 unifontImg.classList.add('text-style-default');
             }
 
-            unifontImgLoading.replaceWith(unifontImg);
+            data.unifontImg.replaceWith(unifontImg);
         }
 
         // New text style glyph
-        if (typeof textImgLoading !== 'undefined') {
+        if (typeof data.textImg !== 'undefined') {
             const textSrc = `glyphs/${emoji.name}/${fileName}-text.png`;
             const textImg = await getValidImage(textSrc, 'glyphs/TODO/TODO-text.png');
-            textImgLoading.replaceWith(textImg);
+            data.textImg.replaceWith(textImg);
         }
 
         // New monochrome emoji style glyph.
         const emojiSrc = `glyphs/${emoji.name}/${fileName}-emoji.png`;
         const emojiImg = await getValidImage(emojiSrc, 'glyphs/TODO/TODO-emoji.png');
-        emojiImgLoading.replaceWith(emojiImg);
+        data.emojiImg.replaceWith(emojiImg);
 
         // New color emoji style glyph.
         const colorSrc = `glyphs/${emoji.name}/${fileName}-color.png`;
         const colorImg = await getValidImage(colorSrc, 'glyphs/TODO/TODO-color.png');
-        colorImgLoading.replaceWith(colorImg);
+        data.colorImg.replaceWith(colorImg);
     }
 }
 
