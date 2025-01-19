@@ -59,10 +59,16 @@ async function populateGlyphs() {
         const tr = document.createElement('tr');
 
         // Code Point
-        data.codeTd = document.createElement('td');
-        data.codeTd.className = 'code';
-        data.codeTd.textContent = 'U+XXXX';
-        tr.appendChild(data.codeTd);
+        const codeTd = document.createElement('td');
+        codeTd.className = 'code';
+        for (const codePoint of emoji.codePoints) {
+            const codePointDiv = document.createElement('div');
+            codePointDiv.className = 'code-point';
+            codePointDiv.textContent = 'U+' + codePoint.toString(16).toUpperCase();
+            codeTd.appendChild(codePointDiv);
+        }
+
+        tr.appendChild(codeTd);
 
         // CLDR Short Name
         const nameTd = document.createElement('td');
@@ -125,15 +131,7 @@ async function populateGlyphs() {
 
         const fileName = emoji.codePoints[0].toString(16).padStart(6, '0').toUpperCase();
 
-        // Now take the time to fill in the data.
-
-        // Code Point
-        for (const codePoint of emoji.codePoints) {
-            const codePointDiv = document.createElement('div');
-            codePointDiv.className = 'code-point';
-            codePointDiv.textContent = 'U+' + codePoint.toString(16).toUpperCase();
-            data.codeTd.appendChild(codePointDiv);
-        }
+        // Now take the time to load the images.
 
         // Unifont Glyph
         if (typeof data.unifontImg !== 'undefined') {
