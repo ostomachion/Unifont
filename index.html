@@ -30,6 +30,7 @@
 
     <link rel="stylesheet" href="styles/style.css">
 
+    <script src="scripts/emoji-order.js" defer></script>
     <script src="scripts/emoji-presentation.js" defer></script>
     <script src="scripts/variations.js" defer></script>
     <script src="scripts/script.js" defer></script>
@@ -165,133 +166,7 @@
         <span class="control-group">
             <label>Category <em>(not yet implemented)</em></label>
             <br>
-            <select name="smileys-and-emotion" id="category">
-                <optgroup label="Smileys &amp; Emotion">
-                    <option value="face-smiling">face smiling</option>
-                    <option value="face-affection">face affection</option>
-                    <option value="face-tongue">face tongue</option>
-                    <option value="face-hand">face hand</option>
-                    <option value="face-neutral-skeptical">face neutral skeptical</option>
-                    <option value="face-sleepy">face sleepy</option>
-                    <option value="face-unwell">face unwell</option>
-                    <option value="face-hat">face hat</option>
-                    <option value="face-glasses">face glasses</option>
-                    <option value="face-concerned">face concerned</option>
-                    <option value="face-negative">face negative</option>
-                    <option value="face-costume">face costume</option>
-                    <option value="cat face">cat face</option>
-                    <option value="monkey face">monkey face</option>
-                    <option value="heart">heart</option>
-                    <option value="emotion">emotion</option>
-                </optgroup>
-                <hr />
-                <optgroup label="People &amp; Body">
-                    <option value="hand-fingers-open">hand fingers open</option>
-                    <option value="hand-fingers-partial">hand fingers partial</option>
-                    <option value="hand-single-finger">hand single finger</option>
-                    <option value="hand-fingers-closed">hand fingers closed</option>
-                    <option value="hands">hands</option>
-                    <option value="hand-prop">hand prop</option>
-                    <option value="body-parts">body parts</option>
-                    <option value="person">person</option>
-                    <option value="person-gesture">person gesture</option>
-                    <option value="person-role">person role</option>
-                    <option value="person-fantasy">person fantasy</option>
-                    <option value="person-activity">person activity</option>
-                    <option value="person-sport">person sport</option>
-                    <option value="person-resting">person resting</option>
-                    <option value="family">family</option>
-                    <option value="person-symbol">person symbol</option>
-                </optgroup>
-                <hr>
-                <optgroup label="Component">
-                    <option value="hair-style">hair style</option>
-                </optgroup>
-                <optgroup label="Animals &amp; Nature">
-                    <option value="animal-mammal">animal mammal</option>
-                    <option value="animal-bird">animal bird</option>
-                    <option value="animal-amphibian">animal amphibian</option>
-                    <option value="animal-reptile">animal reptile</option>
-                    <option value="animal-marine">animal marine</option>
-                    <option value="animal-bug">animal bug</option>
-                    <option value="plant-flower">plant flower</option>
-                    <option value="plant-other">plant other</option>
-                </optgroup>
-                <hr>
-                <optgroup label="Food &amp; Drink">
-                    <option value="food-fruit">food fruit</option>
-                    <option value="food-vegetable">food vegetable</option>
-                    <option value="food-prepared">food prepared</option>
-                    <option value="food-asian">food asian</option>
-                    <option value="food-sweet">food sweet</option>
-                    <option value="drink">drink</option>
-                    <option value="dishware">dishware</option>
-                </optgroup>
-                <hr>
-                <optgroup label="Travel &amp; Places">
-                    <option value="place-map">place map</option>
-                    <option value="place-geographic">place geographic</option>
-                    <option value="place-building">place building</option>
-                    <option value="place-religious">place religious</option>
-                    <option value="place-other">place other</option>
-                    <option value="transport-ground">transport ground</option>
-                    <option value="transport-water">transport water</option>
-                    <option value="transport-air">transport air</option>
-                    <option value="hotel">hotel</option>
-                    <option value="time">time</option>
-                    <option value="sky &amp; weather">sky &amp; weather</option>
-                </optgroup>
-                <hr>
-                <optgroup label="Activities">
-                    <option value="event">event</option>
-                    <option value="award-medal">award medal</option>
-                    <option value="sport">sport</option>
-                    <option value="game">game</option>
-                    <option value="arts &amp; crafts">arts &amp; crafts</option>
-                </optgroup>
-                <hr>
-                <optgroup label="Objects">
-                    <option value="clothing">clothing</option>
-                    <option value="sound">sound</option>
-                    <option value="music">music</option>
-                    <option value="musical-instrument">musical instrument</option>
-                    <option value="phone">phone</option>
-                    <option value="computer">computer</option>
-                    <option value="light &amp; video">light &amp; video</option>
-                    <option value="book-paper">book paper</option>
-                    <option value="money">money</option>
-                    <option value="mail">mail</option>
-                    <option value="writing">writing</option>
-                    <option value="office">office</option>
-                    <option value="lock">lock</option>
-                    <option value="tool">tool</option>
-                    <option value="science">science</option>
-                    <option value="medical">medical</option>
-                    <option value="household">household</option>
-                    <option value="other-object">other object</option>
-                </optgroup>
-                <optgroup label="Symbols">
-                    <option value="transport-sign">transport sign</option>
-                    <option value="warning">warning</option>
-                    <option value="arrow">arrow</option>
-                    <option value="religion">religion</option>
-                    <option value="zodiac">zodiac</option>
-                    <option value="av-symbols">av symbols</option>
-                    <option value="gender">gender</option>
-                    <option value="math">math</option>
-                    <option value="punctuation">punctuation</option>
-                    <option value="currency">currency</option>
-                    <option value="other-symbol">other symbol</option>
-                    <option value="keycap">keycap</option>
-                    <option value="alphanum">alphanum</option>
-                    <option value="geometric">geometric</option>
-                </optgroup>
-                <optgroup label="Flags">
-                    <option value="flag">flag</option>
-                    <option value="country-flag">country flag</option>
-                    <option value="subdivision">subdivision flag</option>
-                </optgroup>
-            </select>
+            <select name="smileys-and-emotion" id="category"></select>
         </span>
         <span class="control-group">
             <label>Scale</label>

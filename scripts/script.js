@@ -10,9 +10,32 @@ document.querySelectorAll('input[name="scale"]').forEach(radio => {
     });
 });
 
-populate();
+populateCategories();
+populateGlyphs();
 
-async function populate() {
+function populateCategories() {
+    const select = document.getElementById('category');
+    let first = true;
+    for (let category of window.emojiOrder) {
+        if (!first) {
+            select.append(document.createElement('hr'));
+        }
+
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = category['label'];
+        for (let subCategory of category.order) {
+            const option = document.createElement('option');
+            option.value = `${category.label} : ${subCategory.label}`;
+            option.textContent = subCategory.label;
+            optgroup.append(option);
+        }
+
+        select.append(optgroup);
+        first = false;
+    }
+}
+
+async function populateGlyphs() {
     const rows = document.querySelectorAll('table tr:has(td)');
     for (const row of rows) {
         const no = row.children[0].textContent.trim();
@@ -57,7 +80,7 @@ async function populate() {
             const textSrc = `glyphs/${no} - ${name}/${fileName}-text.png`;
             const textImg = await getValidImage(textSrc, 'TODO/TODO-text.png');
             textTd.appendChild(textImg);
-        }
+        } 
         
         row.appendChild(textTd);
 
