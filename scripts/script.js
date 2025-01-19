@@ -76,10 +76,16 @@ async function populateGlyphs() {
         const unifontTd = document.createElement('td');
         unifontTd.classList.add('unifont');
 
-        if (emoji.codePoints.length === 1 || emoji.codePoints.length === 2 && emoji.codePoints[1] === 0xFE0F) {
+        // TODO: Actually look this up.
+        const isTextStyleDefault = emoji.codePoints.length === 2 && emoji.codePoints[1] === 0xFE0F;
+        if (emoji.codePoints.length === 1 || isTextStyleDefault) {
             const unifontSrc = `glyphs/${emoji.name}/${fileName}.png`;
             const fallbackSrc = `glyphs/TODO/${fileName}.png`;
             const img = await getValidImage(unifontSrc, fallbackSrc);
+            if (isTextStyleDefault) {
+                img.classList.add('text-style-default');
+            }
+            
             unifontTd.appendChild(img);
         } else {
             unifontTd.textContent = 'N/A';

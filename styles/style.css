@@ -156,29 +156,6 @@ td:is(.noto-text, .noto-emoji, .noto-color) {
     line-height: calc(24px * var(--scale));
 }
 
-td.noto-text {
-    font-family: "Noto Sans Symbols", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-size: calc(16px * var(--scale));
-}
-
-td.noto-emoji {
-    font-family: "Noto Emoji", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-size: calc(12px * var(--scale));
-}
-
-td.noto-color {
-    font-family: "Noto Color Emoji", serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: calc(12px * var(--scale));
-}
-
-td.default img {
-    border: calc(2px * var(--scale)) solid #f0e442;
+img.text-style-default {
+    border: calc(2px * var(--scale)) solid var(--yellow);
 }
