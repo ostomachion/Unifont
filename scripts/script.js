@@ -76,7 +76,7 @@ async function populateGlyphs() {
         const unifontTd = document.createElement('td');
         unifontTd.classList.add('unifont');
 
-        if (emoji.codePoints.length === 1) {
+        if (emoji.codePoints.length === 1 || emoji.codePoints.length === 2 && emoji.codePoints[1] === 0xFE0F) {
             const unifontSrc = `glyphs/${emoji.name}/${fileName}.png`;
             const fallbackSrc = `glyphs/TODO/${fileName}.png`;
             const img = await getValidImage(unifontSrc, fallbackSrc);
