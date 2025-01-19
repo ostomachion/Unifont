@@ -85,6 +85,9 @@ async function populateGlyphs() {
         if (emoji.codePoints.length === 1 || isTextStyleDefault) {
             data.unifontImg = document.createElement('img');
             data.unifontImg.src = loadingSrc;
+            if (isTextStyleDefault) {
+                unifontImg.classList.add('text-style-default');
+            }
             unifontTd.appendChild(data.unifontImg);
         } else {
             unifontTd.textContent = 'N/A';
