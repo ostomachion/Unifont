@@ -55,6 +55,9 @@ async function populateGlyphs() {
     // Start with placeholders for most things just to get the structure and layout built as quickly as possible.
     for (const emoji of emojiList) {
         const data = {};
+        data.isSingleCodePoint = emoji.codePoints.length == 1 || emoji.codePoints.length == 2 && emoji.codePoints[1] === 0xFE0F;
+        data.hasTextStyleVariation = data.isSingleCodePoint && window.variationCodePoints.includes(emoji.codePoints[0]);
+        data.isEmojiPresentation = !data.isSingleCodePoint || window.emojiPresentationCodePoints.includes(emoji.codePoints[0]);
 
         const tr = document.createElement('tr');
 
@@ -80,12 +83,10 @@ async function populateGlyphs() {
         const unifontTd = document.createElement('td');
         unifontTd.classList.add('unifont');
 
-        // TODO: Actually look this up.
-        const isTextStyleDefault = emoji.codePoints.length === 2 && emoji.codePoints[1] === 0xFE0F;
-        if (emoji.codePoints.length === 1 || isTextStyleDefault) {
+        if (data.isSingleCodePoint) {
             data.unifontImg = document.createElement('img');
             data.unifontImg.src = loadingSrc;
-            if (isTextStyleDefault) {
+            if (!data.isEmojiPresentation) {
                 data.unifontImg.classList.add('text-style-default');
             }
             unifontTd.appendChild(data.unifontImg);
@@ -96,14 +97,12 @@ async function populateGlyphs() {
         tr.appendChild(unifontTd);
         
         // New text style glyph
-        // TODO: Set this.
-        const isVariation = false;
         const textTd = document.createElement('td');
         textTd.classList.add('text');
-        if (isVariation) {
+        if (data.hasTextStyleVariation) {
             data.textImg = document.createElement('img');
             data.textImg.src = loadingSrc;
-            textTd.appendChild(textImg);
+            textTd.appendChild(data.textImg);
         } 
         
         tr.appendChild(textTd);
@@ -138,12 +137,10 @@ async function populateGlyphs() {
 
         // Unifont Glyph
         if (typeof data.unifontImg !== 'undefined') {
-            // TODO: Actually look this up.
-            const isTextStyleDefault = emoji.codePoints.length === 2 && emoji.codePoints[1] === 0xFE0F;
             const unifontSrc = `glyphs/${emoji.name}/${fileName}.png`;
             const fallbackSrc = `glyphs/TODO/${fileName}.png`;
             const unifontImg = await getValidImage(unifontSrc, fallbackSrc);
-            if (isTextStyleDefault) {
+            if (!data.isEmojiPresentation) {
                 unifontImg.classList.add('text-style-default');
             }
 
