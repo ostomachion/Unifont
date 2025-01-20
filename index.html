@@ -42,21 +42,27 @@
     <h2>Emoji Consolidation and Coloring</h2>
 
     <p>
-        These edits aim to make the Unifont emoji glyphs both internally consistent and reasonably consistent with the
-        familiar designs provided by other fonts and vendors. This work also extends Unifont emoji glyphs by including:
+        This work aims to make the Unifont emoji glyphs more closely match the Emoji and CLDR definitions (especially the
+        <a href="https://www.unicode.org/reports/tr51/#Design_Guidelines">Design Guidelines</a> section of
+        <cite>Unicode&#xAE; Technical Standard #51</cite>), more internally consistent, and reasonably consistent with
+        the familiar shapes and designs mostly commonly used in industry practice. This last point is explicitly recommended
+        by <cite>Unicode&#xAE; Technical Standard #51</cite>.
     </p>
 
+    <p>This work also extends Unifont emoji glyphs by including:</p>
+
     <ul>
-        <li>glyphs for the basic emoji sequences: keycap, flag, tag, and RGI modifiers</li>
-        <li>glyphs for the emoji RGI ZWJ sequences: family, role, gender, hair, and other</li>
-        <li>glyphs for the emoji variation sequences: text style and emoji style</li>
+        <li>glyphs for the basic emoji sequences: keycap, flag, tag, and RGI modifier sequences</li>
+        <li>glyphs for the emoji RGI ZWJ sequences: family, role, gender, hair, and other RGI ZWJ sequences</li>
+        <li>glyphs for the emoji variation sequences: text style and emoji style variation sequences</li>
         <li>colored versions of each emoji style glyph</li>
     </ul>
 
     <h3>Color Palette</h3>
 
     <p>
-        The color palette used for the color glyphs is a custom palette called &ldquo;Human16&rdquo;.
+        The color palette used for the color glyphs is a custom palette that will be called &ldquo;Human16&rdquo; in
+        this document.
     </p>
 
     <ul class="palette">
@@ -118,31 +124,27 @@
         <li>
             <strong>Be simple</strong> enough to fit with the look, feel, and philosophy of Unifont. Human16 uses only
             16 colors (not counting transparency), with no two colors being too similar. An efficient glyph encoding can
-            be derived analogous to the .hex format used for existing Unifont glyphs, using four bits per pixel instead
-            of one. Either a simple transparency mask can be used, or a simple algorithm can determine the transparent
-            pixels can be automatically determined as none of the outermost pixels of the glyph will ever be pure white.
+            be derived analogous to the .hex format used for existing monochrome Unifont glyphs, using four bits per
+            pixel instead of one. Either a simple transparency mask can be used, or a simple algorithm can automatically
+            determine the transparent pixels as none of the outermost pixels of the glyph will ever be pure white.
         </li>
         <li>
             <strong>Be compatible</strong> with all existing emoji characters and their expected presentations. Human16
-            includes the 12 colors of the explicitly colored shape emoji (hearts, squares, and circle), as well as the
-            five skin tones from the set of skin tone modifier emoji (one of which overlaps with the basic
+            includes the 12 colors of the explicitly colored shape emoji (hearts, squares, circles, etc), as well as the
+            five skin tones from the set of skin tone modifier emoji components (one of which overlaps with the basic
             &ldquo;brown&rdquo; color).
         </li>
         <li>
-            <strong>Be accessible.</strong> Human16 incorporates the <a
-                href="https://x.com/bangwong/status/492662880760655873">colorblind
-                safe palette</a> used by Bang Wong (<cite><a
-                    href="https://jfly.uni-koeln.de/html/manuals/pdf/color_blind.pdf">original
-                    source</a></cite>; see also <cite><a href="https://doi.org/10.1038/nmeth.1618">Wong, B. Points of
-                    view:
-                    Color blindness. <i>Nat Methods</i> <b>8</b>, 441 (2011)</a></cite> for more details). This palette
-            is
-            expanded by adding a carefully selected shade of purple and gray.
+            <strong>Be accessible.</strong> Human16 incorporates the
+            <a href="https://x.com/bangwong/status/492662880760655873">colorblind safe palette</a> used by Bang Wong
+            (<cite><a href="https://jfly.uni-koeln.de/html/manuals/pdf/color_blind.pdf">original source</a></cite>;
+            see also
+            <cite><a href="https://doi.org/10.1038/nmeth.1618">Wong, B. Points of view: Color blindness. <i>Nat Methods</i> <b>8</b>, 441 (2011)</a></cite>
+            for more details). This palette is expanded by adding a carefully selected shade of purple and gray.
         </li>
         <li>
             <strong>Be inclusive.</strong> Rather than the Fitzpatrick scale, Human16 derives its skin tone colors from
-            <cite><a href="https://skintone.google/the-scale">Monk, Ellis. &ldquo;Monk Skin Tone Scale,&rdquo;
-                    2019</a></cite>.
+            <cite><a href="https://skintone.google/the-scale">Monk, Ellis. &ldquo;Monk Skin Tone Scale,&rdquo; 2019</a></cite>.
             This scale is more modern, inclusive, and representative than the Fitzpatrick scale which is primary a
             dermatological tool and has been criticized for its Eurocentric bias and insufficient representation of
             global skin color diversity. The specific tones have been modified to better match the the rest of the
@@ -153,50 +155,58 @@
     <h3>Glyphs</h3>
 
     <p>
-        The following lists the new glyph designs. The <b>Unifont</b> column shows the current glyph in Unifont 16.0.02.
-        The <b>New</b> columns show the new glyph designs in text style, monochrome emoji style, and color emoji style.
-        Only characters with emoji variation sequences have text style variants. Note that sequences never have text
-        style presentations (ignoring the special case keycap sequences).
+        The following table presents the proposed glyph designs. The <b>Unifont</b> column shows the current glyph in
+        Unifont 16.0.02. The <b>New</b> columns show the new glyph designs in text style, monochrome emoji style, and
+        color emoji style. Only characters with emoji variation sequences have text style variants. Note that other
+        emoji sequences never have text style presentations (ignoring the special case keycap sequences).
     </p>
 
     <p>
         If the character has a default text style presentation, the glyph in the <b>Unifont</b> column will be outlined
-        in yellow. If Unifont adopts the new designs, they will have to decide whether to use the text style or emoji
-        style glyph variant for the characters that have variations. Listed below are a few possibilities:
+        in yellow. If Unifont adopts the new designs in its charts, it will have to decide whether to use the text style
+        or (monochrome) emoji style glyph variant for those characters that have variations. Several possible approaches
+        are listed below.
     </p>
 
     <ul>
         <li>
-            Use the default style. This aligns with many of the glyph designs in Unifont 16.0.02. This may align the
-            most with user expectations in most cases, although a few edge cases may cause confusion.
+            Use the default style. This aligns with many of the glyph designs in Unifont 16.0.02. (See the half-width
+            U+263A as an example.) This may align the most with user expectations in most cases, although a few edge
+            cases may cause confusion.
         </li>
         <li>
             Always use the text style when one exists. This may be a good choice considering that Unifont does not
             have any &ldquo;support&rdquo; for emoji other than providing monochrome glyphs for the base characters.
         </li>
         <li>
-            Always use the emoji style. This brings consistency to all emoji glyphs, although the text style may be
-            preferred or expected in some cases.
+            Always use the (monochrome) emoji style. This brings the most consistency to all emoji glyphs, although the
+            text style may be preferred or expected in some cases.
         </li>
         <li>
             Incorporate both styles by adding support for emoji variation sequences to Unifont. This gives users and
             systems control over the glyphs at the expense of the simplicity of Unifont.
         </li>
         <li>
-            Create separate fonts for text style vs emoji style. There is precedence for this approach with the
-            Japanese versions of the CJK glyphs. A similar approach could be used for emoji at the
-            expense of multiplying the number of charts and fonts. It would also have to be decided whether the text
-            style version of the font would include emoji code points which do not have text styles.
+            Create separate fonts for text style vs emoji style. There is precedence for this approach with the Japanese
+            versions of the CJK glyphs. A similar approach could be used for emoji at the expense of multiplying the
+            number of charts and fonts. It would also have to be decided whether the text style version of the font
+            would include emoji code points which do not have text styles.
         </li>
     </ul>
+
+    <p>
+        I would propose using the default presentation in the charts, and then designing a mechanism to support
+        sequences in Unifont. At a minimum, an initial implementation could add support only for variation sequences
+        (in order to support both text style and emoji style presentations). Future implementations could then support
+        the other emoji sequences if desired.
+    </p>
 
     <p>
         Regardless of if and how Unifont uses these glyphs, I intend to make two new fonts to compliment Unifont. One
         will use the monochrome emoji style glyphs and the other will use the color emoji style glyphs. Both will
         include full emoji support for sequences and variations. These fonts will only contain emoji characters. Unifont
-        is free to use, redistribute, or even take over these fonts when they become available.
+        has full permission to use, redistribute, or even take over these fonts and glyphs when they become available.
     </p>
-
 
     <div id="glyphs">
         <fieldset>
