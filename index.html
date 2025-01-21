@@ -111,8 +111,7 @@
 
     <p>
         The second goal of this work is to create extensions to GNU Unifont to add full support for emoji. These
-        extensions are likely out of scope for the Unifont project, in which case they will continue to be maintained
-        and provided separately on this page. The extensions include:
+        extensions are likely out of scope for the Unifont project. The extensions include:
     </p>
 
     <ul>
@@ -217,9 +216,27 @@
     <h2>Glyphs</h2>
 
     <p>
+        This project will provide two new fonts called &ldquo;Comfont Emoji&rdquo; and &ldquo;Comfont Color Emoji&r;
+        to complement Unifont. Comfont Emoji will use the monochrome emoji style glyphs and Comfont Color Emoji will use
+        the color emoji style glyphs. Both will include full emoji support for sequences and variations. These fonts
+        will contain only emoji glyphs and their text variants and will be dual-licensed under the
+        <a href="OFL.txt">SIL Open Font License (OFL) version 1.1</a> and the
+        <a href="LICENSE.txt">GNU General Public License Version 3</a> with the GNU font embedding exception. Unifont
+        has full permission to incorporate these glyphs or redistribute these fonts when they become available. If
+        Unifont does decide to fully incorporate and host these extensions, I will deprecate the Comfont fonts and
+        archive this page. Otherwise, any unincorporated extensions will continue to be maintained and provided here.
+    </p>
+
+    <p>
+        The name &ldquo;Comfont&rdquo; has multiple interpretations. First, it is an analogy to &rdquo;Unifont&ldquo;
+        with a reference to the <b>Com</b>mon Locale Data Repository (CLDR). It is also a <b>com</b>plement to Unifont,
+        as well as a 
+    </p>
+
+    <p>
         The following table presents the proposed glyph designs. The <b>Unifont</b> column shows the current glyph in
-        Unifont 16.0.02. The <b>New</b> columns show the new glyph designs in text style (if the code point has a text
-        style variation), monochrome emoji style, and color emoji style.
+        Unifont 16.0.02. The <b>Comfont</b> columns show the new glyph designs in text style (if the code point has a
+        text style variation), monochrome emoji style, and color emoji style.
     </p>
 
     <p>
@@ -255,24 +272,16 @@
     </ul>
 
     <p>
-        My possibly unrealistic recommendation would be for Unifont to use the default presentation in the charts, and
+        My (possibly unrealistic) recommendation would be for Unifont to use the default presentation in the charts, and
         then design a mechanism to support character sequences. At a minimum, an initial implementation could add
         support only for variation sequences (in order to support both text style and emoji style presentations). Future
         implementations could then support the other emoji sequences if desired. However, I understand if this is out of
         scope for Unifont.
     </p>
 
-    <p>
-        Regardless of if and how Unifont uses these glyphs, I intend to make two new fonts to complement and extend
-        Unifont. One will use the monochrome emoji style glyphs and the other will use the color emoji style glyphs.
-        Both will include full emoji support for sequences and variations. These fonts will only contain emoji
-        glyphs and their text variants. Unifont has full permission to incorporate and redistribute these fonts and
-        glyphs when they become available.
-    </p>
-
     <div id="glyphs">
         <fieldset>
-            <legend>Glyphs</legend>
+            <legend>Comfont Glyphs</legend>
 
             <span class="control-group">
                 <label>Category</label>
@@ -294,7 +303,7 @@
                 <tr>
                     <th colspan="2">Unicode</th>
                     <th colspan="1">Unifont</th>
-                    <th colspan="3">New</th>
+                    <th colspan="3">Comfont</th>
                 </tr>
                 <tr>
                     <th class="code">Code</th>
