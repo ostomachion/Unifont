@@ -41,23 +41,82 @@
 <body>
     <h1>Unifont Glyph Modifications and Extensions</h1>
 
-    <h2>Emoji Consolidation and Coloring</h2>
+    <h2>Emoji Glyph Consolidation</h2>
 
     <p>
-        This work aims to make the Unifont emoji glyphs more closely match the Emoji and CLDR definitions (especially the
-        <a href="https://www.unicode.org/reports/tr51/#Design_Guidelines">Design Guidelines</a> section of
-        <cite>Unicode&#xAE; Technical Standard #51</cite>), more internally consistent, and reasonably consistent with
-        the familiar shapes and designs mostly commonly used in industry practice. This last point is explicitly
-        recommended by <cite>Unicode&#xAE; Technical Standard #51</cite> for improved interoperability.
+        The first goal of this work is to improve the emoji glyphs in <a href="https://www.unifoundry.com/unifont/index.html">GNU Unifont</a>
+        with a focus on three consistency criteria listed below in order of priority:
     </p>
 
-    <p>This work also extends Unifont emoji glyphs by including:</p>
+    <ol>
+        <li>
+            <p>
+                <strong>Be consistent within Unifont.</strong> Many emoji glyphs in the font exhibit inconsistencies
+                in shapes, sizes, and positions, both in their overall forms and in their individual components. For
+                instance, while most of the &ldquo;smiley&rdquo; emoji are drawn within a standard 15&times;14 circle,
+                some deviate from this standard size without a clear reason. Similarly, the shapes and positions of
+                commonly used eye and mouth types can be standardized. These adjustments will help create a more
+                cohesive look and feel across the set, while still allowing for individual glyphs to retain their unique
+                character where appropriate.
+            </p>
+        </li>
+
+        <li>
+            <p>
+                <strong>Be consistent with the official guidelines.</strong> The glyph designs should adhere to the
+                specifications and recommendations outlined in the various emoji and CLDR documents and data files.
+                Extensive details can be found in the <a href="https://www.unicode.org/reports/tr51/#Design_Guidelines">Design Guidelines</a>
+                section of <cite>Unicode&reg; Technical Standard #51</cite>.
+            </p>
+            
+            <p>
+                Many existing glyphs appear to have been designed solely based on the formal character name and
+                representative glyph in the Unicode code charts, without sufficient consideration for the information
+                provided by the emoji and CLDR documents and data files. For example, the code point U+1F603 has the
+                formal name &ldquo;SMILING FACE WITH OPEN MOUTH&rdquo;, but a CLDR short name of &ldquo;grinning face
+                with big eyes&rdquo;. As noted in the Unicode documentation: 
+            </p>
+
+            <blockquote>
+                &ldquo;The formal Unicode name of a Unicode character does not determine its appearance. [&hellip;] In many cases, 
+                the consensus for the best depiction has evolved in the time since the original formal name was standardized, and 
+                the preferred depiction is now better reflected by the CLDR short name.&rdquo;
+            </blockquote>
+        </li>
+
+        <li>
+            <p>
+                <strong>Be consistent with industry practice.</strong> This criterion is specifically detailed in
+                <cite><a href="https://www.unicode.org/reports/tr51/"></a>Unicode&reg; Technical Standard #51</a></cite>
+                but is explicitly listed here for emphasis. Many emoji fonts and vendors have agreed upon a set of
+                visual conventions and styles that increase interoperability and user familiarity across platforms.
+                Aligning with these practices helps maintain consistency and avoids user confusion when interpreting 
+                emoji designs.
+            </p>
+
+            <p>
+                While consistency with industry practices is encouraged, it is important to recognize that exact 
+                replication of existing designs is neither required nor always practical. Reasonable interpretation and
+                creativity in representing emoji and other icons are valid and often necessary to accommodate diverse
+                design contexts or technical constraints. The goal is to balance user expectations with flexibility in
+                artistic expression and functionality.
+            </p>
+        </li>
+    </ol>
+    
+    <h2>Extended Emoji Support</h2>
+
+    <p>
+        The second goal of this work is to create extensions to GNU Unifont to add full support for emoji. These
+        extensions are likely out of scope for the Unifont project, in which case they will continue to be maintained
+        and provided separately on this page. The extensions include:
+    </p>
 
     <ul>
+        <li>glyphs for the emoji variation sequences: text style and emoji style variation sequences</li>
         <li>glyphs for the basic emoji sequences: keycap, flag, tag, and RGI modifier sequences</li>
         <li>glyphs for the emoji RGI ZWJ sequences: family, role, gender, hair, and other RGI ZWJ sequences</li>
-        <li>glyphs for the emoji variation sequences: text style and emoji style variation sequences</li>
-        <li>colored versions of each emoji style glyph</li>
+        <li>colored versions of each emoji glyph</li>
     </ul>
 
     <h3>Color Palette</h3>
@@ -154,13 +213,12 @@
         </li>
     </ul>
 
-    <h3>Glyphs</h3>
+    <h2>Glyphs</h2>
 
     <p>
         The following table presents the proposed glyph designs. The <b>Unifont</b> column shows the current glyph in
-        Unifont 16.0.02. The <b>New</b> columns show the new glyph designs in text style, monochrome emoji style, and
-        color emoji style. Only characters with emoji variation sequences have text style variants. Note that other
-        emoji sequences never have text style presentations (ignoring the special case keycap sequences).
+        Unifont 16.0.02. The <b>New</b> columns show the new glyph designs in text style (if the code point has a text
+        style variation), monochrome emoji style, and color emoji style.
     </p>
 
     <p>
@@ -173,8 +231,8 @@
     <ul>
         <li>
             Use the default style. This aligns with many of the glyph designs in Unifont 16.0.02. (See the half-width
-            U+263A as an example.) This may align the most with user expectations in most cases, although a few edge
-            cases may cause confusion.
+            U+263A as an example.) This may align with user expectations in most cases, although a few edge cases may
+            cause confusion.
         </li>
         <li>
             Always use the text style when one exists. This may be a good choice considering that Unifont does not
@@ -191,23 +249,24 @@
         <li>
             Create separate fonts for text style vs emoji style. There is precedence for this approach with the Japanese
             versions of the CJK glyphs. A similar approach could be used for emoji at the expense of multiplying the
-            number of charts and fonts. It would also have to be decided whether the text style version of the font
-            would include emoji code points which do not have text styles.
+            number of charts and fonts.
         </li>
     </ul>
 
     <p>
-        I would propose using the default presentation in the charts, and then designing a mechanism to support
-        sequences in Unifont. At a minimum, an initial implementation could add support only for variation sequences
-        (in order to support both text style and emoji style presentations). Future implementations could then support
-        the other emoji sequences if desired.
+        My possibly unrealistic recommendation would be for Unifont to use the default presentation in the charts, and
+        then design a mechanism to support character sequences. At a minimum, an initial implementation could add
+        support only for variation sequences (in order to support both text style and emoji style presentations). Future
+        implementations could then support the other emoji sequences if desired. However, I understand if this is out of
+        scope for Unifont.
     </p>
 
     <p>
-        Regardless of if and how Unifont uses these glyphs, I intend to make two new fonts to compliment Unifont. One
-        will use the monochrome emoji style glyphs and the other will use the color emoji style glyphs. Both will
-        include full emoji support for sequences and variations. These fonts will only contain emoji characters. Unifont
-        has full permission to use, redistribute, or even take over these fonts and glyphs when they become available.
+        Regardless of if and how Unifont uses these glyphs, I intend to make two new fonts to compliment and extend
+        Unifont. One will use the monochrome emoji style glyphs and the other will use the color emoji style glyphs.
+        Both will include full emoji support for sequences and variations. These fonts will only contain emoji
+        glyphs and their text variants. Unifont has full permission to use and redistribute these fonts and glyphs when
+        they become available.
     </p>
 
     <div id="glyphs">
@@ -250,6 +309,14 @@
             <tbody></tbody>
         </table>
     </div>
+
+    <h2>License</h2>
+
+    <p>
+        This project and the glyph designs on this page are licensed under the <a href="LICENSE.txt">GNU General Public License Version 3.</a>
+        The font files for this project will be dual-licensed under the <a href="OFL.txt">SIL Open Font License (OFL) version 1.1</a>
+        and the GNU General Public License Version 3 with the GNU font embedding exception
+    </p>
 </body>
 
 </html>
