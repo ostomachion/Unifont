@@ -168,3 +168,10 @@ td:is(.noto-text, .noto-emoji, .noto-color) {
 img.text-style-default {
     border: calc(2px * var(--scale)) solid var(--yellow);
 }
+
+.note {
+    background: var(--yellow);
+    border: 6px ridge var(--orange);
+    padding: 6px;
+    margin-inline: -6px;
+}
