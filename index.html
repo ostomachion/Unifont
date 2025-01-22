@@ -221,6 +221,11 @@
 
     <h2>Glyphs</h2>
 
+    <p class="note">
+        <strong>&#x26a0; Note:</strong> This section will be expanded to include text style presentations for all code
+        points and a minor rearrangement of the table with clarifications. Details to come.
+    </p>
+
     <p>
         This project will provide two new fonts called &ldquo;Comfont Emoji&rdquo; and &ldquo;Comfont Color Emoji&rdquo;
         to complement Unifont. Comfont Emoji will use the monochrome emoji style glyphs and Comfont Color Emoji will use
@@ -237,46 +242,6 @@
         The following table presents the proposed glyph designs. The <b>Unifont</b> column shows the current glyph in
         Unifont 16.0.02. The <b>Comfont</b> columns show the new glyph designs in text style (if the code point has a
         text style variation), monochrome emoji style, and color emoji style.
-    </p>
-
-    <p>
-        If a character has a default text style presentation, the glyph in the <b>Unifont</b> column is be outlined in
-        yellow. If Unifont adopts the new designs in its charts, it will have to decide whether to use the text style
-        or (monochrome) emoji style glyph variant for those characters that have variations. Several possible approaches
-        are listed below.
-    </p>
-
-    <ul>
-        <li>
-            Use the default style. This aligns with many of the glyph designs in Unifont 16.0.02. (See the half-width
-            U+263A as an example.) This may align with user expectations in most cases, although a few edge cases may
-            cause confusion.
-        </li>
-        <li>
-            Always use the text style when one exists. This may be a good choice considering that Unifont does not
-            have any &ldquo;support&rdquo; for emoji other than providing monochrome glyphs for the base characters.
-        </li>
-        <li>
-            Always use the (monochrome) emoji style. This brings the most consistency to all emoji glyphs, although the
-            text style may be preferred or expected in some cases.
-        </li>
-        <li>
-            Incorporate both styles by adding support for emoji variation sequences to Unifont. This gives users and
-            systems control over the glyphs at the expense of the simplicity of Unifont.
-        </li>
-        <li>
-            Create separate fonts for text style vs emoji style. There is precedence for this approach with the Japanese
-            versions of the CJK glyphs. A similar approach could be used for emoji at the expense of multiplying the
-            number of charts and fonts.
-        </li>
-    </ul>
-
-    <p>
-        My (possibly unrealistic) recommendation would be for Unifont to use the default presentation in the charts, and
-        then design a mechanism to support character sequences. At a minimum, an initial implementation could add
-        support only for variation sequences (in order to support both text style and emoji style presentations). Future
-        implementations could then support the other emoji sequences if desired. However, I understand if this is out of
-        scope for Unifont.
     </p>
 
     <div id="glyphs">
