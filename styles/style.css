@@ -89,6 +89,14 @@ fieldset {
     }
 }
 
+a {
+    color: var(--blue);
+
+    &:visited {
+        color: var(--purple);
+    }
+}
+
 .palette {
     display: grid;
     grid-template-columns: repeat(8, min-content);
@@ -150,7 +158,7 @@ th, td {
     padding-inline: 1em;
 }
 
-.unifont, .text, .noto-text {
+.unifont, .emoji, .noto-symbol {
     border-inline-start: 2px ridge var(--gray);
 }
 
@@ -160,13 +168,12 @@ td:is(.unifont, .text, .emoji, .color) img {
     image-rendering: pixelated;
 }
 
-td:is(.noto-text, .noto-emoji, .noto-color) {
-    /* line-height: 0; */
-    line-height: calc(24px * var(--scale));
-}
-
 img.text-style-default {
     border: calc(2px * var(--scale)) solid var(--yellow);
+}
+
+img.unchanged {
+    opacity: 0.125;
 }
 
 .note {

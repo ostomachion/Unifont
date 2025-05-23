@@ -24,12 +24,6 @@
     <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
     <meta name="theme-color" content="#0072b2">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Noto+Emoji:wght@300..700&family=Noto+Sans+Symbols:wght@100..900&display=swap"
-        rel="stylesheet">
-
     <link rel="stylesheet" href="styles/style.css">
 
     <script src="scripts/emoji-data.js" defer></script>
@@ -43,53 +37,115 @@
 
     <h2>Emoji Glyph Normalization</h2>
 
-    <p class="note">
-        <strong>&#x26a0; Note:</strong> After reading through the nuances of text vs. emoji style presentations, the
-        scope of this goal will be simplified and this section will be rewritten. The majority of this section is no
-        longer valid.
+    <p>
+        The first goal of this work is to contribute to the excellent work provided by <a href="https://www.unifoundry.com/unifont/index.html">GNU Unifont</a>
+        and normalize its emoji glyphs as described below. The adjustments proposed here are intended to contribute
+        positively to the project, ensuring that the emoji glyphs in Unifont are as cohesive, user-friendly, and
+        standards-aligned as possible while respecting the unique character and legacy of the font.
     </p>
 
     <p>
-        The first goal of this work is to contribute to the excellent work provided by <a href="https://www.unifoundry.com/unifont/index.html">GNU Unifont</a>
-        and normalize its emoji glyphs by focusing on three consistency criteria listed below in order of priority. The
-        adjustments proposed here are intended to contribute positively to the project, ensuring that the emoji glyphs
-        in Unifont are as cohesive, user-friendly, and standards-aligned as possible while respecting the unique
-        character and legacy of the font.
+        Many emoji glyphs in the font exhibit inconsistencies
+        in shapes, sizes, and positions, both in their overall forms and in their individual components. For
+        instance, while most of the &ldquo;smiley&rdquo; emoji are drawn within a standard 15&times;14 circle,
+        some deviate from this standard size without a clear reason. Similarly, the shapes and positions of
+        commonly used eye and mouth types can be standardized. These adjustments will help create a more
+        cohesive look and feel across the set, while still allowing for individual glyphs to retain their unique
+        character where appropriate.
+    </p>
+
+    <p>
+        The Unicode and emoji standards discuss the text style vs emoji style of an emoji character. Text style does not
+        refer to simply a monochrome version of emoji style; the design for each text style glyph is guided by (but not
+        mandated by) the Unicode character properties of the character (especially the Name property) and the
+        representative glyph in the code charts, while the design for each emoji style glyph (see the next section) are
+        guided by the various emoji and CLDR documents and data files as well as industry practice. Even characters that
+        do not have an explicitly defined text style variation sequence are given separate text and emoji style glyphs.
+        As Unifont does not include emoji support, the proposed glyphs are all designed in text style. Emoji style
+        glyphs (both monochrome and color) are given later in this document.
+    </p>
+
+    <p>
+        The following table shows each emoji code point grouped by emoji category with its name, code point, and
+        representative glyph from the Unicode code charts. Each row also includes the current Unifont glyphs for the
+        character and the proposed updated glyph. Grayed-out glyphs in the &ldquo;proposed&rdquo; column indicate that
+        the current glyph has been included in this proposal without redesign. Proposed glyphs displaying &ldquo;TO DO&rdquo;
+        have not yet been included in the proposal and may or may not have a proposed redesign in the future.
+    </p>
+
+    <div id="unifont-glyphs">
+        <fieldset>
+            <legend>Unifont Glyphs</legend>
+
+            <span class="control-group">
+                <label>Category</label>
+                <br>
+                <select name="smileys-and-emotion" id="unifont-category"></select>
+            </span>
+            <span class="control-group">
+                <label>Scale</label>
+                <br>
+                <label><input type="radio" name="scale" value="1" id="scale1x"> 1&#xD7;</label>
+                <label><input type="radio" name="scale" value="2" id="scale2x" checked> 2&#xD7;</label>
+                <label><input type="radio" name="scale" value="3" id="scale3x"> 3&#xD7;</label>
+                <label><input type="radio" name="scale" value="4" id="scale4x"> 4&#xD7;</label>
+            </span>
+        </fieldset>
+
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="3">Unicode</th>
+                    <th colspan="2">Unifont</th>
+                </tr>
+                <tr>
+                    <th class="code">Code</th>
+                    <th class="name">Name</th>
+                    <th class="representative">Representative</th>
+
+                    <th class="unifont">16.0.03</th>
+                    <th class="text">Proposed</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <p>Hex format for proposed glyph updates for the category selected above:</p>
+        <textarea id="hex" cols="48" rows="24">Loading...</textarea>
+    </div>
+    
+    <h2>Extended Emoji Support</h2>
+
+    <p>
+        The second goal of this work is to create extensions to GNU Unifont to add full support for emoji. These
+        extensions are likely out of scope for the Unifont project. The extensions include:
+    </p>
+
+    <ul>
+        <li>glyphs for the emoji variation sequences: text style and emoji style variation sequences</li>
+        <li>glyphs for the basic emoji sequences: keycap, flag, tag, and RGI modifier sequences</li>
+        <li>glyphs for the emoji RGI ZWJ sequences: family, role, gender, hair, and other RGI ZWJ sequences</li>
+        <li>colored versions of each emoji glyph</li>
+    </ul>
+
+    <p>
+        The text style glyphs are taken from the proposed glyphs for Unifont given above. The following criteria guide
+        the design of the emoji style glyphs:
     </p>
 
     <ol>
         <li>
             <p>
-                <strong>Be consistent within Unifont.</strong> Many emoji glyphs in the font exhibit inconsistencies
-                in shapes, sizes, and positions, both in their overall forms and in their individual components. For
-                instance, while most of the &ldquo;smiley&rdquo; emoji are drawn within a standard 15&times;14 circle,
-                some deviate from this standard size without a clear reason. Similarly, the shapes and positions of
-                commonly used eye and mouth types can be standardized. These adjustments will help create a more
-                cohesive look and feel across the set, while still allowing for individual glyphs to retain their unique
-                character where appropriate.
-            </p>
-        </li>
-
-        <li>
-            <p>
                 <strong>Be consistent with the official guidelines.</strong> The glyph designs should adhere to the
                 specifications and recommendations outlined in the various emoji and CLDR documents and data files.
                 Extensive details can be found in the <a href="https://www.unicode.org/reports/tr51/#Design_Guidelines">Design Guidelines</a>
-                section of <cite>Unicode&reg; Technical Standard #51</cite>.
-            </p>
-            
-            <p>
-                Many existing glyphs appear to have been designed solely based on the formal character name and
-                representative glyph in the Unicode code charts, without sufficient consideration for the information
-                provided by the emoji and CLDR documents and data files. For example, the code point U+1F603 has the
-                formal name &ldquo;SMILING FACE WITH OPEN MOUTH&rdquo;, but a CLDR short name of &ldquo;grinning face
-                with big eyes&rdquo;. As noted in the Unicode documentation: 
+                section of <cite>Unicode&reg; Technical Standard #51</cite>. As noted in the Unicode documentation: 
             </p>
 
             <blockquote>
-                &ldquo;The formal Unicode name of a Unicode character does not determine its appearance. [&hellip;] In many cases, 
-                the consensus for the best depiction has evolved in the time since the original formal name was standardized, and 
-                the preferred depiction is now better reflected by the CLDR short name.&rdquo;
+                &ldquo;The formal Unicode name of a Unicode character does not determine its appearance. [&hellip;] In
+                many cases, the consensus for the best depiction has evolved in the time since the original formal name
+                was standardized, and the preferred depiction is now better reflected by the CLDR short name.&rdquo;
             </blockquote>
         </li>
 
@@ -112,20 +168,6 @@
             </p>
         </li>
     </ol>
-    
-    <h2>Extended Emoji Support</h2>
-
-    <p>
-        The second goal of this work is to create extensions to GNU Unifont to add full support for emoji. These
-        extensions are likely out of scope for the Unifont project. The extensions include:
-    </p>
-
-    <ul>
-        <li>glyphs for the emoji variation sequences: text style and emoji style variation sequences</li>
-        <li>glyphs for the basic emoji sequences: keycap, flag, tag, and RGI modifier sequences</li>
-        <li>glyphs for the emoji RGI ZWJ sequences: family, role, gender, hair, and other RGI ZWJ sequences</li>
-        <li>colored versions of each emoji glyph</li>
-    </ul>
 
     <h3>Color Palette</h3>
 
@@ -219,12 +261,7 @@
         </li>
     </ul>
 
-    <h2>Glyphs</h2>
-
-    <p class="note">
-        <strong>&#x26a0; Note:</strong> This section will be expanded to include text style presentations for all code
-        points and a minor rearrangement of the table. Details to come.
-    </p>
+    <h2>Emoji Style Glyphs</h2>
 
     <p>
         This project will provide two new fonts called &ldquo;Comfont Emoji&rdquo; and &ldquo;Comfont Color Emoji&rdquo;
@@ -240,18 +277,18 @@
 
     <p>
         The following table presents the proposed glyph designs. The <b>Unifont</b> column shows the current glyph in
-        Unifont 16.0.02. The <b>Comfont</b> columns show the new glyph designs in text style (if the code point has a
+        Unifont 16.0.03. The <b>Comfont</b> columns show the new glyph designs in text style (if the code point has a
         text style variation), monochrome emoji style, and color emoji style.
     </p>
 
-    <div id="glyphs">
+    <div id="comfong-glyphs">
         <fieldset>
             <legend>Comfont Glyphs</legend>
 
             <span class="control-group">
                 <label>Category</label>
                 <br>
-                <select name="smileys-and-emotion" id="category"></select>
+                <select name="smileys-and-emotion" id="comfont-category"></select>
             </span>
             <span class="control-group">
                 <label>Scale</label>
@@ -267,16 +304,16 @@
             <thead>
                 <tr>
                     <th colspan="2">Unicode</th>
-                    <th colspan="1">Unifont</th>
-                    <th colspan="3">Comfont</th>
+                    <th colspan="2">Unifont</th>
+                    <th colspan="2">Comfont</th>
                 </tr>
                 <tr>
                     <th class="code">Code</th>
                     <th class="name">CLDR Short Name</th>
 
-                    <th class="unifont">16.0.02</th>
+                    <th class="unifont">16.0.03</th>
+                    <th class="text">Proposed</th>
 
-                    <th class="text">Text</th>
                     <th class="emoji">Emoji</th>
                     <th class="color">Color</th>
                 </tr>
