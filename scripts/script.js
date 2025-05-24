@@ -122,6 +122,14 @@ async function populateUnifontGlyphs() {
         textTd.appendChild(data.textImg);
         
         tr.appendChild(textTd);
+          
+        // Diff
+        const diffTd = document.createElement('td');
+        diffTd.classList.add('diff');
+        data.diffCanvas = document.createElement('canvas');
+        diffTd.appendChild(data.diffCanvas);
+        
+        tr.appendChild(diffTd);
         
         tbody.appendChild(tr);
 
@@ -155,9 +163,11 @@ async function populateUnifontGlyphs() {
             data.unifontHex = getHex(unifontImg);
         }
 
+        const textSrc = `glyphs/${emoji.shortName}/${fileName}-text.png`;
+        const hasTextImg = await validateImage(textSrc);
+
         // New text style glyph
         if (typeof data.textImg !== 'undefined') {
-            const textSrc = `glyphs/${emoji.shortName}/${fileName}-text.png`;
             const textImg = await getValidImage(textSrc, 'glyphs/TODO/TODO-text.png');
             data.textImg.replaceWith(textImg);
             data.textHex = getHex(textImg);
@@ -165,9 +175,14 @@ async function populateUnifontGlyphs() {
                 textImg.classList.add('unchanged');
             }
 
-            if (await validateImage(textSrc)) {
+            if (hasTextImg) {
                 hexValue += fileName.replace(/^0+/, '').padStart(4, '0') + ':' + data.textHex + '\n';
             }
+        }
+
+        // Diff
+        if (typeof data.unifontImg !== 'undefined' && hasTextImg) {
+            drawDiff(data.diffCanvas, data.unifontHex, data.textHex);
         }
     }
 
@@ -258,4 +273,38 @@ function getHex(img) {
     }
 
     return hex;
+}
+
+function drawDiff(canvas, oldHex, newHex) {
+    canvas.width = 256;
+    canvas.height = 256;
+
+    const red = window.getComputedStyle(document.body).getPropertyValue('--red');
+    const green = window.getComputedStyle(document.body).getPropertyValue('--green');
+
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+
+    for (let i = 0; i < 64; i++) {
+        const oldHexDigit = +`0x${oldHex[i]}`;
+        const newHexDigit = +`0x${newHex[i]}`;
+        for (let b = 0; b < 4; b++) {
+            const oldBit = (oldHexDigit >> b) % 2;
+            const newBit = (newHexDigit >> b) % 2;
+
+            const y = ((4 * i + (3 - b)) / 16) | 0;
+            const x = (4 * i + (3 - b)) % 16;
+
+            if (oldBit === 1 && newBit === 1) {
+                ctx.fillStyle = '#00000022';
+                ctx.fillRect(x * 16, y * 16, 16, 16);
+            } else if (oldBit === 1 && newBit === 0) {
+                ctx.fillStyle = red;
+                ctx.fillRect(x * 16, y * 16, 16, 16);
+            } else if (oldBit === 0 && newBit === 1) {
+                ctx.fillStyle = green;
+                ctx.fillRect(x * 16, y * 16, 16, 16);
+            }
+        }
+    }
 }

@@ -162,7 +162,7 @@ th, td {
     border-inline-start: 2px ridge var(--gray);
 }
 
-td:is(.unifont, .text, .emoji, .color) img {
+td:is(.unifont, .text, .emoji, .color, .diff) :is(img, canvas) {
     padding: 2px;
     width: calc(16px * var(--scale) / var(--dpr) * var(--dpri));
     image-rendering: pixelated;
