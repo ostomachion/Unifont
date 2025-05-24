@@ -166,7 +166,14 @@ th, td {
 td:is(.unifont, .text, .emoji, .color, .diff) :is(img, canvas) {
     padding: 2px;
     width: calc(16px * var(--scale) / var(--dpr) * var(--dpri));
+    height: calc(16px * var(--scale) / var(--dpr) * var(--dpri));
     image-rendering: pixelated;
+}
+
+.representative img {
+    width: calc(20px * var(--scale) / var(--dpr) * var(--dpri));
+    height: calc(20px * var(--scale) / var(--dpr) * var(--dpri));
+    image-rendering: initial;
 }
 
 img.text-style-default {
