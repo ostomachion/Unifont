@@ -135,6 +135,7 @@ a {
 table {
     background: var(--white);
     border-collapse: collapse;
+    min-width: 100%;
 }
 
 #glyphs {
