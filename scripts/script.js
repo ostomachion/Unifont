@@ -173,9 +173,7 @@ async function populateUnifontGlyphs() {
             data.textHex = getHex(textImg);
             if (data.textHex === data.unifontHex) {
                 textImg.classList.add('unchanged');
-            }
-
-            if (hasTextImg) {
+            } else if (hasTextImg) {
                 hexValue += fileName.replace(/^0+/, '').padStart(4, '0') + ':' + data.textHex + '\n';
             }
         }
