@@ -104,9 +104,6 @@ async function populateUnifontGlyphs() {
         if (data.isSingleCodePoint) {
             data.unifontImg = document.createElement('img');
             data.unifontImg.src = loadingSrc;
-            if (!data.isEmojiPresentation) {
-                data.unifontImg.classList.add('text-style-default');
-            }
             unifontTd.appendChild(data.unifontImg);
         } else {
             unifontTd.textContent = 'N/A';
