@@ -3,7 +3,7 @@
 document.documentElement.style.setProperty('--dpri', window.devicePixelRatio | 1);
 document.documentElement.style.setProperty('--dpr', window.devicePixelRatio);
 
-document.querySelectorAll('input[name="scale"]').forEach(radio => {
+document.querySelectorAll('input[name="unifont-scale"]').forEach(radio => {
     radio.addEventListener('change', (event) => {
         const scaleValue = event.target.value; // Get the selected value
         document.documentElement.style.setProperty('--scale', scaleValue);
@@ -73,12 +73,11 @@ async function populateUnifontGlyphs() {
         // Code Point
         const codeTd = document.createElement('td');
         codeTd.className = 'code';
-        for (const codePoint of emoji.codePoints) {
-            const codePointDiv = document.createElement('div');
-            codePointDiv.className = 'code-point';
-            codePointDiv.textContent = 'U+' + codePoint.toString(16).toUpperCase();
-            codeTd.appendChild(codePointDiv);
-        }
+        const codePoint = emoji.codePoints[0];
+        const codePointDiv = document.createElement('div');
+        codePointDiv.className = 'code-point';
+        codePointDiv.textContent = 'U+' + codePoint.toString(16).toUpperCase();
+        codeTd.appendChild(codePointDiv);
 
         tr.appendChild(codeTd);
 
@@ -95,7 +94,6 @@ async function populateUnifontGlyphs() {
         data.reprImg.src = loadingSrc;
         representativeTd.appendChild(data.reprImg);
         tr.appendChild(representativeTd);
-
 
         // Unifont Glyph
         const unifontTd = document.createElement('td');
