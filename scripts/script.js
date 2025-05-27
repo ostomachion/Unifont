@@ -183,40 +183,89 @@ async function populateUnifontGlyphs() {
 }
 
 async function populateComfontGlyphs() {
-    // TODO:
+    const selectedGroup = document.getElementById('comfont-category').value.split(':', 2);
 
-    // // New monochrome emoji style glyph
-    // const emojiTd = document.createElement('td');
-    // emojiTd.classList.add('emoji');
-    // data.emojiImg = document.createElement('img');
-    // data.emojiImg.src = loadingSrc;
-    // emojiTd.appendChild(data.emojiImg);
-    // tr.appendChild(emojiTd);
+    let emojiList = window.emojiData
+        .find(g => g.label === selectedGroup[0])
+        .subgroups
+        .find(s => s.label === selectedGroup[1])
+        .emoji;
 
-    // // New color emoji style glyph
-    // const colorTd = document.createElement('td');
-    // colorTd.classList.add('color');
-    // data.colorImg = document.createElement('img');
-    // data.colorImg.src = loadingSrc;
-    // colorTd.appendChild(data.colorImg);
-    // tr.appendChild(colorTd);
+    const tbody = document.getElementById('comfont-glyphs').getElementsByTagName('tbody')[0];
+    tbody.textContent = '';
 
-    // for (const emoji of emojiList) {
-    //     const data = domData[emoji.shortName];
+    const loadingSrc = 'glyphs/loading.gif';
 
-    //     const fileName = emoji.codePoints[0].toString(16).padStart(6, '0').toUpperCase();
+    const domData = {};
 
-    //     // Now take the time to load the images.
-    //     // New monochrome emoji style glyph.
-    //     const emojiSrc = `glyphs/${emoji.shortName}/${fileName}-emoji.png`;
-    //     const emojiImg = await getValidImage(emojiSrc, 'glyphs/TODO/TODO-emoji.png');
-    //     data.emojiImg.replaceWith(emojiImg);
+    // Start with placeholders for most things just to get the structure and layout built as quickly as possible.
+    for (const emoji of emojiList) {
+        const data = {};
+        data.isSingleCodePoint = emoji.codePoints.length == 1 || emoji.codePoints.length == 2 && emoji.codePoints[1] === 0xFE0F;
+        data.hasTextStyleVariation = data.isSingleCodePoint && window.variationCodePoints.includes(emoji.codePoints[0]);
+        data.isEmojiPresentation = !data.isSingleCodePoint || window.emojiPresentationCodePoints.includes(emoji.codePoints[0]);
 
-    //     // New color emoji style glyph.
-    //     const colorSrc = `glyphs/${emoji.shortName}/${fileName}-color.png`;
-    //     const colorImg = await getValidImage(colorSrc, 'glyphs/TODO/TODO-color.png');
-    //     data.colorImg.replaceWith(colorImg);
-    // }
+        const tr = document.createElement('tr');
+
+        // Code Point
+        const codeTd = document.createElement('td');
+        codeTd.className = 'code';
+        const codePoint = emoji.codePoints[0];
+        const codePointDiv = document.createElement('div');
+        codePointDiv.className = 'code-point';
+        codePointDiv.textContent = 'U+' + codePoint.toString(16).toUpperCase();
+        codeTd.appendChild(codePointDiv);
+
+        tr.appendChild(codeTd);
+
+        // CLDR Short Name
+        const nameTd = document.createElement('td');
+        nameTd.className = 'name';
+        nameTd.textContent = emoji.shortName;
+        tr.appendChild(nameTd);
+        
+        // Monochrome emoji style glyph
+        const emojiTd = document.createElement('td');
+        emojiTd.classList.add('emoji');
+        data.emojiImg = document.createElement('img');
+        data.emojiImg.src = loadingSrc;
+        emojiTd.appendChild(data.emojiImg);
+        
+        tr.appendChild(emojiTd);
+          
+        // Color emoji style glyph 
+        const colorTd = document.createElement('td');
+        colorTd.classList.add('color');
+        data.colorImg = document.createElement('img');
+        data.colorImg.src = loadingSrc;
+        colorTd.appendChild(data.colorImg);
+        
+        tr.appendChild(colorTd);
+        
+        tbody.appendChild(tr);
+
+        domData[emoji.shortName] = data;
+    }
+    
+    for (const emoji of emojiList) {
+        const data = domData[emoji.shortName];
+        if (!data)
+            continue;
+
+        const fileName = emoji.codePoints[0].toString(16).padStart(6, '0').toUpperCase();
+
+        // Now take the time to load the images.
+
+        // New monochrome emoji style glyph.
+        const emojiSrc = `glyphs/${emoji.shortName}/${fileName}-emoji.png`;
+        const emojiImg = await getValidImage(emojiSrc, 'glyphs/TODO/TODO-emoji.png');
+        data.emojiImg.replaceWith(emojiImg);
+
+        // New color emoji style glyph.
+        const colorSrc = `glyphs/${emoji.shortName}/${fileName}-color.png`;
+        const colorImg = await getValidImage(colorSrc, 'glyphs/TODO/TODO-color.png');
+        data.colorImg.replaceWith(colorImg);
+    }
 }
 
 async function getValidImage(...urls) {
